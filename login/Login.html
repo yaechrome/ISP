@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link rel="stylesheet" href="../static/css/codebeautify.css" type="text/css"/>
+
+        <title>Login</title>
+        <meta charset = "utf-8">
+    </head>
+
+    <body>
+        <main role="main">
+            <section class="container">
+                <div class="row mb0 center-align relative full">
+                    <div class="center">
+                        <div class="col s12 m6 offset-m3 l4 offset-l4">
+                            <div class="card">
+                                <div class="card-content pb0 pt0">
+                                    <br>
+                                    <h1 class="title medium mb10">Login de Usuarios</h3>
+                                        <hr/>
+                                        <div class="row">
+                                            <form action="checklogin.php" method="post" >
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <label for="username">Usuario (RUT)</label><br>
+                                                        <input class="validate" name="username" type="text" id="username" required>
+                                                        <br><br>
+                                                    </div>
+                                                </div>    
+                                                <div class="row mb0">
+                                                    <div class="input-field col s12">
+                                                        <label for="password">Contraseña</label><br>
+                                                        <input class="validate" name="password" type="password" id="password" required>
+                                                        <br><br>
+                                                    </div>
+                                                </div>
+                                                <div class="card-action">
+                                                    <input class="waves-effect waves-light btn purple darken-3" type="submit" name="Submit" value="LOGIN">
+                                                </div>
+                                            </form>
+                                            <p><a href="../paginas/ventanaAgregarUsuario.php" >Registrarse</a></p>
+                                            <hr />
+                                        </div>
+                                        <footer>
+                                            &copy;2018 <a href=""></a>
+                                        </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
