@@ -54,6 +54,7 @@ CREATE TABLE `Empresa` (
   `nombreEmpresa` varchar(30) NOT NULL DEFAULT '',
   `passwordEmpresa` varchar(10) NOT NULL DEFAULT '',
   `direccionEmpresa` varchar(50) NOT NULL DEFAULT '',
+  `estado` varchar(10) NOT NULL DEFAULT 'Activo',
   PRIMARY KEY (`codigoEmpresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,6 +72,7 @@ CREATE TABLE `Particular` (
   `nombreParticular` varchar(45) NOT NULL DEFAULT '',
   `direccionParticular` varchar(45) NOT NULL DEFAULT '',
   `emailParticular` varchar(100) NOT NULL DEFAULT '',
+  `estado` varchar(10) NOT NULL DEFAULT 'Activo',
   PRIMARY KEY (`codigoParticular`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
