@@ -8,11 +8,20 @@ class Particular {
     private $nombre;
     private $direccion;
     private $email;
+    private $estado;
     
     function __construct() {
         
     }
-    function getCodigo() {
+    function getEstado() {
+        return $this->estado;
+    }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+        function getCodigo() {
         return $this->codigo;
     }
 

@@ -3,11 +3,11 @@
 
 class ResultadoAnalisis {
     private $tipoAnalisis;
-    private $AnalisisMuestra;
+    private $analisisMuestra;
     private $fechaRegistro;
     private $ppm;
     private $estado;
-    private $Empleado;
+    private $empleado;
     
     function __construct() {
         
@@ -17,7 +17,7 @@ class ResultadoAnalisis {
     }
 
     function getAnalisisMuestra() {
-        return $this->AnalisisMuestra;
+        return $this->analisisMuestra;
     }
 
     function getFechaRegistro() {
@@ -33,15 +33,15 @@ class ResultadoAnalisis {
     }
 
     function getEmpleado() {
-        return $this->Empleado;
+        return $this->empleado;
     }
 
     function setTipoAnalisis($tipoAnalisis) {
         $this->tipoAnalisis = $tipoAnalisis;
     }
 
-    function setAnalisisMuestra($AnalisisMuestra) {
-        $this->AnalisisMuestra = $AnalisisMuestra;
+    function setAnalisisMuestra($analisisMuestra) {
+        $this->analisisMuestra = $analisisMuestra;
     }
 
     function setFechaRegistro($fechaRegistro) {
@@ -56,8 +56,8 @@ class ResultadoAnalisis {
         $this->estado = $estado;
     }
 
-    function setEmpleado($Empleado) {
-        $this->Empleado = $Empleado;
+    function setEmpleado($empleado) {
+        $this->empleado = $empleado;
     }
 
 

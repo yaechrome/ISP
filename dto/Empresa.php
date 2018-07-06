@@ -6,12 +6,20 @@ class Empresa {
      private $nombre;
      private $password;
      private $direccion;
+     private $estado;
      
      function __construct() {
          
      }
+     function getEstado() {
+         return $this->estado;
+     }
 
-     function getCodigo() {
+     function setEstado($estado) {
+         $this->estado = $estado;
+     }
+
+          function getCodigo() {
          return $this->codigo;
      }
 
