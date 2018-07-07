@@ -5,98 +5,32 @@ include_once 'BaseDao.php';
 include_once 'AnalisisMuestraDao.php';
 
 class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
-    
-    public function buscarPorClavePrimaria($id) {
+
+    public function buscarPorCodigoCliente($codigo) {
         $analisisMuestra = NULL;
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE idAnalisisMuestras=?");
-            $stmt->bindParam(1, $id);
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE codigoCliente=?");
+
+            $stmt->bindParam(1, $codigo);
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
                 $analisisMuestra =new AnalisisMuestras();
                 
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular = $particularDao->buscarPorClavePrimaria($value["Particular_codigoParticular"]);
-                if($particular!=null){
-                    $analisisMuestra->setParticular($particular);
-                }
+                $usuario = new Usuario();
+                $usuarioDao = new UsuarioDaoImp();
+                $usuario = $usuarioDao->buscarPorClavePrimaria($value["codigoCliente"]);
                 
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
-                if($empresa!=null){
-                    $analisisMuestra->setEmpresa($empresa);
-                }
+                $analisisMuestra->setUsuario($usuario);
+                
                 
                 $empleado = new Empleado();
                 $empleadoDao = new EmpleadoDaoImp();
                 $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
-                if($empleado!=null){
-                    $analisisMuestra->setEmpleado($empleado);
-                }
+               
+                $analisisMuestra->setEmpleado($empleado);
                 
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
-                $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
-                $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
-                $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
-                
-            }
-            $pdo=NULL;
-        } catch (Exception $exc) {
-            echo "Error dao al buscar Analisis de muestra por clave primaria ".$exc->getMessage();
-        }
-        return $analisisMuestra;
-    }
-
-
-    public function buscarPorRutCliente($rut) {
-        $analisisMuestra = NULL;
-        try {
-            $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE ?=?");
-            
-            $particular = new Particular();
-            $particularDao = new ParticularDaoImp();
-            $particular = $particularDao->buscarPorClavePrimaria($rut);
-            if($particular!=null){
-                $stmt->bindParam(1, "Particular_codigoParticular");
-            }else{
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($rut);
-                if($empresa!=null){
-                    $stmt->bindParam(1, "Empresa_codigoEmpresa");
-                }
-            }   
-            $stmt->bindParam(2, $rut);
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
-            foreach ($resultado as $value) {
-                $analisisMuestra =new AnalisisMuestras();
-                
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular = $particularDao->buscarPorClavePrimaria($value["Particular_codigoParticular"]);
-                if($particular!=null){
-                    $analisisMuestra->setParticular($particular);
-                }
-                
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
-                if($empresa!=null){
-                    $analisisMuestra->setEmpresa($empresa);
-                }
-                
-                $empleado = new Empleado();
-                $empleadoDao = new EmpleadoDaoImp();
-                $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
-                if($empleado!=null){
-                    $analisisMuestra->setEmpleado($empleado);
-                }
                 
                 $analisisMuestra->setId($value["idAnalisisMuestra"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
@@ -118,18 +52,12 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             $pdo = new clasePDO();
             $stmt = null;
             $stmt = $pdo->prepare("INSERT INTO analisismuestras(fechaRecepcion, temperaturaMuestra,"
-                        . "cantidadMuestra,?,rutEmpleadoRecibe) VALUES(now(),?,?,?,?");
-            if($dto->getEmpresa()!=null){
-                
-                $stmt->bindValue(1, "Empresa_codigoEmpresa");
-                $stmt->bindValue(4, $dto->getEmpresa()->getCodigo());
-            }else{
-                $stmt->bindValue(1, "Particular_codigoParticular");
-                $stmt->bindValue(4, $dto->getParticular()->getCodigo());
-            }
-            $stmt->bindValue(2, $dto->getTemperaturaMuestra());
-            $stmt->bindValue(3, $dto->getCantidadMuestra());
-            $stmt->bindValue(5, $dto->getEmpleado()->getRut());
+                        . "cantidadMuestra,codigoCliente,rutEmpleadoRecibe) VALUES(now(),?,?,?,?");
+            
+            $stmt->bindValue(3, $dto->getCliente()->getCodigo());
+            $stmt->bindValue(1, $dto->getTemperaturaMuestra());
+            $stmt->bindValue(2, $dto->getCantidadMuestra());
+            $stmt->bindValue(4, $dto->getEmpleado()->getRut());
             
             $stmt->execute();
             if ($stmt->rowCount() > 0)
@@ -151,22 +79,11 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             foreach ($resultado as $value) {
                 $analisisMuestra =new AnalisisMuestras();
                 
-                $mParticular = $value["Particular_codigoParticular"];
-                if($mParticular!=null){
-                    $particular = new Particular();
-                    $particularDao = new ParticularDaoImp();
-                    $particular = $particularDao->buscarPorClavePrimaria($value["Particular_codigoParticular"]);
-                    if($particular!=null){
-                    $analisisMuestra->setParticular($particular);
-                }
-                }else{
-                    $empresa = new Empresa();
-                    $empresaDao = new EmpresaDaoImp();
-                    $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
-                    if($empresa!=null){
-                        $analisisMuestra->setEmpresa($empresa);
-                    }
-                }
+                $usuario = new Usuario();
+                $usuarioDao = new UsuarioDaoImp();
+                $usuario = $usuarioDao->buscarPorClavePrimaria($value["codigoCliente"]);
+
+                $analisisMuestra->setUsuario($usuario);
                 
                 $empleado = new Empleado();
                 $empleadoDao = new EmpleadoDaoImp();
@@ -194,19 +111,15 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             $pdo = new clasePDO();
             $stmt = null;
             $stmt = $pdo->prepare("update analisismuestras(temperaturaMuestra=?,"
-                        . "cantidadMuestra=?,?=?,rutEmpleadoRecibe=? where idAnalisisMuestras=?");
-            if($dto->getEmpresa()!=null){
-                
-                $stmt->bindValue(3, "Empresa_codigoEmpresa");
-                $stmt->bindValue(4, $dto->getEmpresa()->getCodigo());
-            }else{
-                $stmt->bindValue(3, "Particular_codigoParticular");
-                $stmt->bindValue(4, $dto->getParticular()->getCodigo());
-            }
+                        . "cantidadMuestra=?,codigoCliente=?,rutEmpleadoRecibe=? where idAnalisisMuestras=?");
+              
+            
+            $stmt->bindValue(3, $dto->getUsuario()->getCodigo());
+            
             $stmt->bindValue(1, $dto->getTemperaturaMuestra());
             $stmt->bindValue(2, $dto->getCantidadMuestra());
-            $stmt->bindValue(5, $dto->getEmpleado()->getRut());
-            $stmt->bindValue(6, $dto->getId());
+            $stmt->bindValue(4, $dto->getEmpleado()->getRut());
+            $stmt->bindValue(5, $dto->getId());
             $stmt->execute();
             if ($stmt->rowCount() > 0)
                 return TRUE;
@@ -227,20 +140,13 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
                 $analisisMuestra =new AnalisisMuestras();
+
+                $usuario = new Usuario();
+                $usuarioDao = new UsuarioDaoImp();
+                $usuario = $usuarioDao->buscarPorClavePrimaria($value["codigoCliente"]);
                 
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular = $particularDao->buscarPorClavePrimaria($value["Particular_codigoParticular"]);
-                if($particular!=null){
-                    $analisisMuestra->setParticular($particular);
-                }
+                $analisisMuestra->setUsuario($usuario);
                 
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
-                if($empresa!=null){
-                    $analisisMuestra->setEmpresa($empresa);
-                }
                 
                 $empleado = new Empleado();
                 $empleadoDao = new EmpleadoDaoImp();
@@ -263,30 +169,22 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         
     }
 
-    public function buscarPorCodigoClienteEmpresa($codigo) {
+    public function buscarPorClavePrimaria($id) {
         $analisisMuestra = NULL;
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE Empresa_codigoEmpresa=?");
-            $stmt->bindParam(1, $codigo);
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE idAnalisisMuestras=?");
+            $stmt->bindParam(1, $id);
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
                 $analisisMuestra =new AnalisisMuestras();
                 
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular = $particularDao->buscarPorClavePrimaria($value["Particular_codigoParticular"]);
-                if($particular!=null){
-                    $analisisMuestra->setParticular($particular);
-                }
+                $usuario = new Usuario();
+                $usuarioDao = new UsuarioDaoImp();
+                $usuario = $usuarioDao->buscarPorClavePrimaria($value["codigoCliente"]);
+                $analisisMuestra->setUsuario($usuario);
                 
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
-                if($empresa!=null){
-                    $analisisMuestra->setEmpresa($empresa);
-                }
                 
                 $empleado = new Empleado();
                 $empleadoDao = new EmpleadoDaoImp();
@@ -303,53 +201,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             }
             $pdo=NULL;
         } catch (Exception $exc) {
-            echo "Error dao al buscar Analisis de muestras por Empresa ".$exc->getMessage();
-        }
-        return $analisisMuestra;
-        
-    }
-
-    public function buscarPorCodigoClienteParticular($codigo) {
-        $analisisMuestra = NULL;
-        try {
-            $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE Particuar_codigoParticular=?");
-            $stmt->bindParam(1, $codigo);
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
-            foreach ($resultado as $value) {
-                $analisisMuestra =new AnalisisMuestras();
-                
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular = $particularDao->buscarPorClavePrimaria($value["Particular_codigoParticular"]);
-                if($particular!=null){
-                    $analisisMuestra->setParticular($particular);
-                }
-                
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
-                if($empresa!=null){
-                    $analisisMuestra->setEmpresa($empresa);
-                }
-                
-                $empleado = new Empleado();
-                $empleadoDao = new EmpleadoDaoImp();
-                $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
-                if($empleado!=null){
-                    $analisisMuestra->setEmpleado($empleado);
-                }
-                
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
-                $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
-                $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
-                $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
-                
-            }
-            $pdo=NULL;
-        } catch (Exception $exc) {
-            echo "Error dao al buscar Analisis de muestras por Particular ".$exc->getMessage();
+            echo "Error dao al buscar Analisis de muestra por clave primaria ".$exc->getMessage();
         }
         return $analisisMuestra;
     }
