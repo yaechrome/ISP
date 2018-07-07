@@ -38,16 +38,18 @@ CREATE TABLE `Empleado` (
   `nombreEmpleado` varchar(50) NOT NULL DEFAULT '',
   `passwordEmpleado` varchar(10) NOT NULL DEFAULT '',
   `categoria` varchar(1) NOT NULL DEFAULT '',
+  `Estado` varchar(10) NOT NULL DEFAULT 'Activo',
   PRIMARY KEY (`rutEmpleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Empleado` WRITE;
 /*!40000 ALTER TABLE `Empleado` DISABLE KEYS */;
 
-INSERT INTO `Empleado` (`rutEmpleado`, `nombreEmpleado`, `passwordEmpleado`, `categoria`)
+INSERT INTO `Empleado` (`rutEmpleado`, `nombreEmpleado`, `passwordEmpleado`, `categoria`, `Estado`)
 VALUES
-	('2-3','Matias Tapia','123','R'),
-	('4-5','Carla Martinez','123','T');
+	('123','Arturo Vargas','123','A','Activo'),
+	('2-3','Matias Tapia','123','R','Activo'),
+	('4-5','Carla Martinez','123','T','Activo');
 
 /*!40000 ALTER TABLE `Empleado` ENABLE KEYS */;
 UNLOCK TABLES;
