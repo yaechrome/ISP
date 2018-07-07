@@ -15,9 +15,9 @@ class TelefonoDaoImp implements TelefonoDao{
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular = $particularDao->buscarPorClavePrimaria($value["id"]);
+                $particular = new Usuario();
+                $particularDao = new UsuarioDaoImp();
+                $particular = $particularDao->buscarPorClavePrimaria($value["codigoParticular"]);
                 $telefono->setId($value["id"]);
                 $telefono->setDescripcion($value["numeroTelefono"]);               
                 $telefono->setParticular($particular);
@@ -32,7 +32,7 @@ class TelefonoDaoImp implements TelefonoDao{
     public function crear($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("INSERT INTO telefono(numeroTelefono, Particular_codigoParticular) VALUES(?,?");
+            $stmt = $pdo->prepare("INSERT INTO telefono(numeroTelefono, codigoParticular) VALUES(?,?");
 
             $stmt->bindValue(1, $dto->getNumero());
             $stmt->bindValue(2, $dto->getParticular()->getCodigo());
@@ -55,9 +55,9 @@ class TelefonoDaoImp implements TelefonoDao{
             
             $resultado= $stmt->fetchAll();
             foreach ($resultado as $value) {
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular->particularDao->buscarPorClavePrimaria($value["id"]);
+                $particular = new Usuario();
+                $particularDao = new UsuarioDaoImp();
+                $particular->particularDao->buscarPorClavePrimaria($value["codigoParticular"]);
                 $telefono->setId($value["id"]);
                 $telefono->setDescripcion($value["numeroTelefono"]);               
                 $telefono->setParticular($particular);
@@ -77,14 +77,14 @@ class TelefonoDaoImp implements TelefonoDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select * from telefono where Particular_codigoParticular=?");
+            $stmt = $pdo->prepare("select * from telefono where codigoParticular=?");
             $stmt->bindValue(1, $codigoParticular);
             $stmt->execute();
             $registro = $stmt->fetchAll();
             foreach ($registro as $value) {
-                $particular = new Particular();
-                $particularDao = new ParticularDaoImp();
-                $particular->particularDao->buscarPorClavePrimaria($value["id"]);
+                $particular = new Usuario();
+                $particularDao = new UsuarioDaoImp();
+                $particular->particularDao->buscarPorClavePrimaria($value["codigoParticular"]);
                 $telefono->setId($value["id"]);
                 $telefono->setDescripcion($value["numeroTelefono"]);               
                 $telefono->setParticular($particular);
@@ -103,7 +103,7 @@ class TelefonoDaoImp implements TelefonoDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("update telefono set numeroTelefono=?, "
-                    . "Particular_codigoParticular=? where id=?");
+                    . "codigoParticular=? where id=?");
 
             $stmt->bindValue(1, $dto->getnumero());
             $stmt->bindValue(2, $dto->getParticular()->getCodigo());

@@ -1,7 +1,17 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-class Particular {
+/**
+ * Description of Usuario
+ *
+ * @author nippo
+ */
+class Usuario {
     private $codigo;
     private $rut;
     private $password;
@@ -13,15 +23,8 @@ class Particular {
     function __construct() {
         
     }
-    function getEstado() {
-        return $this->estado;
-    }
 
-    function setEstado($estado) {
-        $this->estado = $estado;
-    }
-
-        function getCodigo() {
+    function getCodigo() {
         return $this->codigo;
     }
 
@@ -43,6 +46,10 @@ class Particular {
 
     function getEmail() {
         return $this->email;
+    }
+
+    function getEstado() {
+        return $this->estado;
     }
 
     function setCodigo($codigo) {
@@ -67,6 +74,10 @@ class Particular {
 
     function setEmail($email) {
         $this->email = $email;
+    }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
     }
 
 
