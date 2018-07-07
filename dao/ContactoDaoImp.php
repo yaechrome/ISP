@@ -15,9 +15,9 @@ class ContactoDaoImp implements ContactoDao{
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
+                $empresa = new Usuario();
+                $empresaDao = new UsuarioDaoImp();
+                $empresa = $empresaDao->buscarPorClavePrimaria($value["codigoEmpresa"]);
                 $contacto->setRut($value["rutContacto"]);
                 $contacto->setNombre($value["nombreContacto"]);               
                 $contacto->setEmail($value["emailContacto"]);
@@ -35,7 +35,7 @@ class ContactoDaoImp implements ContactoDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("INSERT INTO contacto(rutContacto, nombreContacto,"
-                    . "emailContacto, telefonoContacto, Empresa_codigoEmpresa) VALUES(?,?,?,?,?");
+                    . "emailContacto, telefonoContacto, codigoEmpresa) VALUES(?,?,?,?,?");
 
             $stmt->bindValue(1, $dto->getRut());
             $stmt->bindValue(2, $dto->getNombre());
@@ -62,9 +62,9 @@ class ContactoDaoImp implements ContactoDao{
             
             $resultado= $stmt->fetchAll();
             foreach ($resultado as $value) {
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
+                $empresa = new Usuario();
+                $empresaDao = new UsuarioDaoImp();
+                $empresa = $empresaDao->buscarPorClavePrimaria($value["codigoEmpresa"]);
                 $contacto->setRut($value["rutContacto"]);
                 $contacto->setNombre($value["nombreContacto"]);               
                 $contacto->setEmail($value["emailContacto"]);
@@ -86,15 +86,15 @@ class ContactoDaoImp implements ContactoDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt= $pdo->prepare("select * from contacto where Empresa_codigoEmpresa =?");
+            $stmt= $pdo->prepare("select * from contacto where codigoEmpresa =?");
             $stmt->bindValue(1, $codigoEmpresa);
             $stmt->execute();
             
             $resultado= $stmt->fetchAll();
             foreach ($resultado as $value) {
-                $empresa = new Empresa();
-                $empresaDao = new EmpresaDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["Empresa_codigoEmpresa"]);
+                $empresa = new Usuario();
+                $empresaDao = new UsuarioDaoImp();
+                $empresa = $empresaDao->buscarPorClavePrimaria($value["codigoEmpresa"]);
                 $contacto->setRut($value["rutContacto"]);
                 $contacto->setNombre($value["nombreContacto"]);               
                 $contacto->setEmail($value["emailContacto"]);
@@ -116,7 +116,7 @@ class ContactoDaoImp implements ContactoDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("update telefono set nombreContacto,"
-                    . "emailContacto, telefonoContacto, Empresa_codigoEmpresa where rutContacto=?");
+                    . "emailContacto, telefonoContacto, codigoEmpresa where rutContacto=?");
 
             $stmt->bindValue(5, $dto->getRut());
             $stmt->bindValue(1, $dto->getNombre());

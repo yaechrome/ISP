@@ -6,9 +6,8 @@ class AnalisisMuestras {
     private $fechaRecepcion;
     private $temperaturaRecepcion;
     private $cantidadMuestra;
-    private $Empresa;
-    private $Particular;
-    private $Empleado;
+    private $usuario;
+    private $empleado;
     
     function __construct() {
         
@@ -29,16 +28,12 @@ class AnalisisMuestras {
         return $this->cantidadMuestra;
     }
 
-    function getEmpresa() {
-        return $this->Empresa;
-    }
-
-    function getParticular() {
-        return $this->Particular;
+    function getUsuario() {
+        return $this->usuario;
     }
 
     function getEmpleado() {
-        return $this->Empleado;
+        return $this->empleado;
     }
 
     function setId($id) {
@@ -57,16 +52,12 @@ class AnalisisMuestras {
         $this->cantidadMuestra = $cantidadMuestra;
     }
 
-    function setEmpresa($Empresa) {
-        $this->Empresa = $Empresa;
+    function setParticular($usuario) {
+        $this->usuario = $usuario;
     }
 
-    function setParticular($Particular) {
-        $this->Particular = $Particular;
-    }
-
-    function setEmpleado($Empleado) {
-        $this->Empleado = $Empleado;
+    function setEmpleado($empleado) {
+        $this->empleado = $empleado;
     }
 
 
