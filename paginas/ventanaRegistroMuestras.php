@@ -8,17 +8,20 @@
     <body>
         <form action="registroMuestras.php" method="POST">
             <div>
-
+                <span>
+                    Código del Cliente: 
+                </span>
             </div>
             <div>
-
+                <span>
+                    Código de la muestra: 
+                </span>
             </div>
             <div>
+                
                 <input type="submit" value="Guardar Análisis" name="btnGuardar" />
             </div>
         </form>
-        <?php
-        // put your code here
-        ?>
+
     </body>
 </html>

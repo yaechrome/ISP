@@ -43,38 +43,23 @@ CREATE TABLE `Empleado` (
 
 
 
-# Volcado de tabla Empresa
+# Volcado de tabla Usuario
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `Empresa`;
+DROP TABLE IF EXISTS `Usuario`;
 
-CREATE TABLE `Empresa` (
-  `codigoEmpresa` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `rutEmpresa` varchar(10) NOT NULL DEFAULT '',
-  `nombreEmpresa` varchar(30) NOT NULL DEFAULT '',
-  `passwordEmpresa` varchar(10) NOT NULL DEFAULT '',
-  `direccionEmpresa` varchar(50) NOT NULL DEFAULT '',
+CREATE TABLE `Usuario` (
+  `codigo` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `rut` varchar(45) NOT NULL DEFAULT '',
+  `nombre` varchar(45) NOT NULL DEFAULT '',
+  `password` varchar(45) NOT NULL DEFAULT '',
+  `direccion` varchar(45) NOT NULL DEFAULT '',
+  `email` varchar(100) DEFAULT '',
+  `perfil` varchar(20) NOT NULL DEFAULT '',
   `estado` varchar(10) NOT NULL DEFAULT 'Activo',
-  PRIMARY KEY (`codigoEmpresa`)
+  PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-# Volcado de tabla Particular
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `Particular`;
-
-CREATE TABLE `Particular` (
-  `codigoParticular` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `rutParticular` varchar(45) NOT NULL DEFAULT '',
-  `passwordParticular` varchar(45) NOT NULL DEFAULT '',
-  `nombreParticular` varchar(45) NOT NULL DEFAULT '',
-  `direccionParticular` varchar(45) NOT NULL DEFAULT '',
-  `emailParticular` varchar(100) NOT NULL DEFAULT '',
-  `estado` varchar(10) NOT NULL DEFAULT 'Activo',
-  PRIMARY KEY (`codigoParticular`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 # Volcado de tabla TipoAnalisis
@@ -99,16 +84,13 @@ CREATE TABLE `AnalisisMuestras` (
   `fechaRecepcion` date NOT NULL,
   `temperaturaMuestra` decimal(3,1) NOT NULL,
   `cantidadMuestra` int(11) NOT NULL,
-  `Empresa_codigoEmpresa` int(11) unsigned DEFAULT NULL,
-  `Particular_codigoParticular` int(11) unsigned DEFAULT NULL,
+  `codigoCliente` int(11) unsigned NOT NULL,
   `rutEmpleadoRecibe` varchar(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`idAnalisisMuestras`),
-  KEY `EmpresaAnalisis` (`Empresa_codigoEmpresa`),
-  KEY `ParticularAnalisis` (`Particular_codigoParticular`),
   KEY `EmpleadoAnalisis` (`rutEmpleadoRecibe`),
-  CONSTRAINT `EmpleadoAnalisis` FOREIGN KEY (`rutEmpleadoRecibe`) REFERENCES `Empleado` (`rutEmpleado`),
-  CONSTRAINT `EmpresaAnalisis` FOREIGN KEY (`Empresa_codigoEmpresa`) REFERENCES `Empresa` (`codigoEmpresa`),
-  CONSTRAINT `ParticularAnalisis` FOREIGN KEY (`Particular_codigoParticular`) REFERENCES `Particular` (`codigoParticular`)
+  KEY `AnalisisCliente` (`codigoCliente`),
+  CONSTRAINT `AnalisisCliente` FOREIGN KEY (`codigoCliente`) REFERENCES `Usuario` (`codigo`),
+  CONSTRAINT `EmpleadoAnalisis` FOREIGN KEY (`rutEmpleadoRecibe`) REFERENCES `Empleado` (`rutEmpleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -123,12 +105,11 @@ CREATE TABLE `Contacto` (
   `nombreContacto` varchar(30) NOT NULL DEFAULT '',
   `emailContacto` varchar(45) NOT NULL DEFAULT '',
   `telefonoContacto` varchar(15) NOT NULL DEFAULT '',
-  `Empresa_codigoEmpresa` int(11) unsigned NOT NULL,
+  `codigoEmpresa` int(11) unsigned NOT NULL,
   PRIMARY KEY (`rutContacto`),
-  KEY `ContactoEmpresa` (`Empresa_codigoEmpresa`),
-  CONSTRAINT `ContactoEmpresa` FOREIGN KEY (`Empresa_codigoEmpresa`) REFERENCES `Empresa` (`codigoEmpresa`)
+  KEY `ContactoEmpresa` (`codigoEmpresa`),
+  CONSTRAINT `ContactoEmpresa` FOREIGN KEY (`codigoEmpresa`) REFERENCES `Usuario` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 # Volcado de tabla ResultadoAnalisis
@@ -161,14 +142,11 @@ DROP TABLE IF EXISTS `Telefono`;
 CREATE TABLE `Telefono` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `numeroTelefono` varchar(15) NOT NULL DEFAULT '',
-  `Particular_codigoParticular` int(11) unsigned NOT NULL,
+  `codigoParticular` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `TelefonoParticular` (`Particular_codigoParticular`),
-  CONSTRAINT `TelefonoParticular` FOREIGN KEY (`Particular_codigoParticular`) REFERENCES `Particular` (`codigoParticular`)
+  KEY `codigoParticular` (`codigoParticular`),
+  CONSTRAINT `telefono_ibfk_1` FOREIGN KEY (`codigoParticular`) REFERENCES `Usuario` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
 
 
 
