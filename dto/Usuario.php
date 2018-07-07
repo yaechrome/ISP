@@ -18,10 +18,19 @@ class Usuario {
     private $nombre;
     private $direccion;
     private $email;
+    private $perfil;
     private $estado;
     
     function __construct() {
         
+    }
+    
+    function getPerfil() {
+        return $this->perfil;
+    }
+
+    function setPerfil($perfil) {
+        $this->perfil = $perfil;
     }
 
     function getCodigo() {

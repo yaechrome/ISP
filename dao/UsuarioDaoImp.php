@@ -22,6 +22,7 @@ class UsuarioDaoImp implements UsuarioDao{
                 $usuario->setNombre($value["nombre"]);
                 $usuario->setDireccion($value["direccion"]);
                 $usuario->setEmail($value["email"]);
+                $usuario->setPerfil($value["perfil"]);
                 $usuario->setEstado($value["estado"]);
 
             }
@@ -37,13 +38,14 @@ class UsuarioDaoImp implements UsuarioDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("INSERT INTO usuario ( rut, password,"
-                    . "nombre, direccion, email) VALUES(?,?,?,?,?");
+                    . "nombre, direccion, email, perfil) VALUES(?,?,?,?,?,?");
 
             $stmt->bindValue(1, $dto->getRut());
             $stmt->bindValue(2, $dto->getPassword());
             $stmt->bindValue(3, $dto->getNombre());
             $stmt->bindValue(4, $dto->getDireccion());
             $stmt->bindValue(5, $dto->getEmail());
+            $stmt->bindValue(6, $dto->getPerfil());
 
             
             $stmt->execute();
@@ -90,6 +92,7 @@ class UsuarioDaoImp implements UsuarioDao{
                 $usuario->setNombre($value["nombre"]);
                 $usuario->setDireccion($value["direccion"]);
                 $usuario->setEmail($value["email"]);
+                $usuario->setPerfil($value["perfil"]);
                 $usuario->setEstado($value["estado"]);
 
                 $lista->append($usuario);
@@ -107,14 +110,15 @@ class UsuarioDaoImp implements UsuarioDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("update usuario set rut=?, password=?,"
-                    . "nombre=?, direccion=?, email=? where codigo=?");
+                    . "nombre=?, direccion=?, email=?, perfil=? where codigo=?");
             
             $stmt->bindValue(1, $dto->getRut());
             $stmt->bindValue(2, $dto->getPassword());
             $stmt->bindValue(3, $dto->getNombre());
             $stmt->bindValue(4, $dto->getDireccion());
             $stmt->bindValue(5, $dto->getEmail());
-            $stmt->bindValue(6, $dto->getCodigo());
+            $stmt->bindValue(6, $dto->getPerfil());
+            $stmt->bindValue(7, $dto->getCodigo());
 
             $stmt->execute();
             if ($stmt->rowCount() > 0)
@@ -142,6 +146,7 @@ class UsuarioDaoImp implements UsuarioDao{
                 $usuario->setNombre($value["nombre"]);
                 $usuario->setDireccion($value["direccion"]);
                 $usuario->setEmail($value["email"]);
+                $usuario->setPerfil($value["perfil"]);
                 $usuario->setEstado($value["estado"]);
             }
 
