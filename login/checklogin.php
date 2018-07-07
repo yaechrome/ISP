@@ -3,11 +3,11 @@ session_start();
 ?>
 
 <?php
-include_once '../dto/UsuarioDto.php';
+include_once '../dto/Usuario.php';
 $host_db = "127.0.0.1";
 $user_db = "root";
 $pass_db = "";
-$db_name = "certificadev";
+$db_name = "isp";
 $tbl_name = "usuario";
 
 $conexion = new mysqli($host_db, $user_db, $pass_db, $db_name);
@@ -19,7 +19,7 @@ if ($conexion->connect_error) {
 $username = $_POST['username'];
 $password = $_POST['password'];
  
-$sql = "SELECT * FROM usuario WHERE rut = '$username' and contrasena = '$password'";
+$sql = "SELECT * FROM usuario WHERE rut = '$username' and password = '$password' and estado ='Activo' ";
 
 $result = $conexion->query($sql);
 
@@ -27,24 +27,26 @@ $result = $conexion->query($sql);
 if ($result->num_rows > 0) {     
  
  $row = $result->fetch_array(MYSQLI_ASSOC);
-    $usuario = new UsuarioDto();
+    $usuario = new Usuario();
+    $usuario->setCodigo($row['codigo']);
     $usuario->setRut($row['rut']);
     $usuario->setNombre($row['nombre']);
-    $usuario->setApellidoPaterno($row['apellido_paterno']);
-    $usuario->setApellidoMaterno($row['apellido_materno']);  
+    $usuario->setPassword($row['password']);
+    $usuario->setDireccion($row['direccion']);  
+    $usuario->setEmail($row['email']);
     $usuario->setPerfil($row['perfil']);
+    $usuario->setEstado($row['estado']);
 
     $_SESSION['usuario'] = $usuario;
     $_SESSION['perfil'] = $row['perfil'];
     $_SESSION['nombre'] = $row['nombre'];
-    $_SESSION['apPaterno'] = $row['apellido_paterno'];
-    $_SESSION['apMaterno'] = $row['apellido_materno'];
+
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
     $_SESSION['start'] = time();
     $_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
 
-    $_SESSION['NombreCompleto'] = $_SESSION['nombre'].' '.$_SESSION['apPaterno'].' '.$_SESSION['apMaterno'];
+    
     //echo "<br><br><a href=panel-control.php>Menu</a>"; 
     //header("location:panel-control.php"); 
     include_once '../login/panel-control.php';
