@@ -4,6 +4,7 @@ session_start();
 
 <?php
 include_once '../dto/Usuario.php';
+include_once '../dto/Empleado.php';
 $host_db = "127.0.0.1";
 $user_db = "root";
 $pass_db = "";
@@ -13,7 +14,9 @@ $tbl_name = "usuario";
 $conexion = new mysqli($host_db, $user_db, $pass_db, $db_name);
 
 if ($conexion->connect_error) {
- die("La conexion falló: " . $conexion->connect_error);
+    
+        die("La conexion falló: " . $conexion->connect_error);
+    
 }
 
 $username = $_POST['username'];
@@ -26,7 +29,7 @@ $result = $conexion->query($sql);
 
 if ($result->num_rows > 0) {     
  
- $row = $result->fetch_array(MYSQLI_ASSOC);
+    $row = $result->fetch_array(MYSQLI_ASSOC);
     $usuario = new Usuario();
     $usuario->setCodigo($row['codigo']);
     $usuario->setRut($row['rut']);
@@ -37,6 +40,7 @@ if ($result->num_rows > 0) {
     $usuario->setPerfil($row['perfil']);
     $usuario->setEstado($row['estado']);
 
+    $_SESSION['tipo'] = 'usuario';
     $_SESSION['usuario'] = $usuario;
     $_SESSION['perfil'] = $row['perfil'];
     $_SESSION['nombre'] = $row['nombre'];
@@ -51,8 +55,36 @@ if ($result->num_rows > 0) {
     //header("location:panel-control.php"); 
     include_once '../login/panel-control.php';
  } else { 
-   echo "RUT o Password estan incorrectos.";
+    $sql = "SELECT * FROM empleado WHERE rutEmpleado = '$username' and passwordEmpleado = '$password'";// and estado ='Activo' ";
 
-   echo "<br><a href='login.html'>Volver a Intentarlo</a>";
+    $result = $conexion->query($sql);
+    if($result->num_rows > 0){
+       
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $empleado = new Empleado();
+        $empleado->setRut($row['rutEmpleado']);
+        $empleado->setNombre($row['nombreEmpleado']);
+        $empleado->setPassword($row['passwordEmpleado']);
+        $empleado->setCategoria($row['categoria']);
+
+        $_SESSION['tipo'] = 'empleado';
+        $_SESSION['usuario'] = $empleado;
+        $_SESSION['perfil'] = $row['categoria'];
+        $_SESSION['nombre'] = $row['nombreEmpleado'];
+
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['start'] = time();
+        $_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
+
+
+        //echo "<br><br><a href=panel-control.php>Menu</a>"; 
+        //header("location:panel-control.php"); 
+        include_once '../login/panel-control.php';
+    }else{
+       echo "RUT o Password estan incorrectos.";
+
+       echo "<br><a href='login.html'>Volver a Intentarlo</a>";
+    }
  }
  mysqli_close($conexion); 
