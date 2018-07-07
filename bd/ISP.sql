@@ -41,7 +41,16 @@ CREATE TABLE `Empleado` (
   PRIMARY KEY (`rutEmpleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `Empleado` WRITE;
+/*!40000 ALTER TABLE `Empleado` DISABLE KEYS */;
 
+INSERT INTO `Empleado` (`rutEmpleado`, `nombreEmpleado`, `passwordEmpleado`, `categoria`)
+VALUES
+	('2-3','Matias Tapia','123','R'),
+	('4-5','Carla Martinez','123','T');
+
+/*!40000 ALTER TABLE `Empleado` ENABLE KEYS */;
+UNLOCK TABLES;
 
 # Volcado de tabla Usuario
 # ------------------------------------------------------------
@@ -60,7 +69,16 @@ CREATE TABLE `Usuario` (
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `Usuario` WRITE;
+/*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
 
+INSERT INTO `Usuario` (`codigo`, `rut`, `nombre`, `password`, `direccion`, `email`, `perfil`, `estado`)
+VALUES
+	(1,'1-1','Juan Perez','1','Matucana 100','j.perez@gmail.com','Particular','Activo'),
+	(2,'3-3','3it','3','Ahumada 123','3it@3it.cl','Empresa','Activo');
+
+/*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 
 # Volcado de tabla TipoAnalisis
 # ------------------------------------------------------------
@@ -72,6 +90,20 @@ CREATE TABLE `TipoAnalisis` (
   `nombre` varchar(45) NOT NULL DEFAULT '',
   PRIMARY KEY (`idTipoAnalisis`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `TipoAnalisis` WRITE;
+/*!40000 ALTER TABLE `TipoAnalisis` DISABLE KEYS */;
+
+INSERT INTO `TipoAnalisis` (`idTipoAnalisis`, `nombre`)
+VALUES
+	(1,'micotoxinas'),
+	(2,'metales pesados'),
+	(3,'plaguicidas prohibidos'),
+	(4,'marea roja'),
+	(5,'bacterias nocivas');
+
+/*!40000 ALTER TABLE `TipoAnalisis` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Volcado de tabla AnalisisMuestras
@@ -111,6 +143,16 @@ CREATE TABLE `Contacto` (
   CONSTRAINT `ContactoEmpresa` FOREIGN KEY (`codigoEmpresa`) REFERENCES `Usuario` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `Contacto` WRITE;
+/*!40000 ALTER TABLE `Contacto` DISABLE KEYS */;
+
+INSERT INTO `Contacto` (`rutContacto`, `nombreContacto`, `emailContacto`, `telefonoContacto`, `codigoEmpresa`)
+VALUES
+	('1-2','Mario Gonzales','m.gonzales@3it.cl','876123435',2);
+
+/*!40000 ALTER TABLE `Contacto` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 # Volcado de tabla ResultadoAnalisis
 # ------------------------------------------------------------
@@ -148,7 +190,15 @@ CREATE TABLE `Telefono` (
   CONSTRAINT `telefono_ibfk_1` FOREIGN KEY (`codigoParticular`) REFERENCES `Usuario` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `Telefono` WRITE;
+/*!40000 ALTER TABLE `Telefono` DISABLE KEYS */;
 
+INSERT INTO `Telefono` (`id`, `numeroTelefono`, `codigoParticular`)
+VALUES
+	(1,'123456789',1);
+
+/*!40000 ALTER TABLE `Telefono` ENABLE KEYS */;
+UNLOCK TABLES;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
