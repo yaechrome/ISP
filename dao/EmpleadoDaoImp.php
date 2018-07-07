@@ -20,7 +20,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
                 $empleado->setNombre($value["nombreEmpleado"]);
                 $empleado->setPassword($value["passwordEmpleado"]);
                 $empleado->setCategoria($value["categoria"]);
-
+                $empleado->setEstado($value["estado"]);
             }
 
             $pdo = NULL;
@@ -65,6 +65,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
                 $empleado->setNombre($value["nombreEmpleado"]);
                 $empleado->setPassword($value["passwordEmpleado"]);
                 $empleado->setCategoria($value["categoria"]);
+                $empleado->setEstado($value["estado"]);
    
 
                 $lista->append($empleado);
@@ -73,7 +74,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
             $pdo=NULL;     
             
         } catch (Exception $exc) {
-            echo "Error dao al listar particulares ".$exc->getMessage();
+            echo "Error dao al listar empleados ".$exc->getMessage();
         }
         return $lista;
     }
@@ -88,6 +89,24 @@ class EmpleadoDaoImp implements EmpleadoDao{
             $stmt->bindValue(1, $dto->getNombre());
             $stmt->bindValue(2, $dto->getPassword());
             $stmt->bindValue(3, $dto->getCategoria());
+
+
+            $stmt->execute();
+            if ($stmt->rowCount() > 0)
+                return TRUE;
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al modificar Empleado" . $exc->getMessage();
+        }
+        return FALSE;
+    }
+
+    public function darDeBaja($rut) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("update particular set estado='Inactivo' where rutEmpleado=?");
+            
+            $stmt->bindValue(1, $dto->getRut());
 
 
             $stmt->execute();
