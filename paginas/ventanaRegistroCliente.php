@@ -41,12 +41,13 @@ and open the template in the editor.
         <form action="registroCliente.php" method="POST" class="container-formulario">
             <div class="container-seccion">
                 <h1>Registrarse</h1>
-            <input type="text" name="txtRut" value="" class="elemento-seccion" placeholder="Rut"/>
-            <input type="text" name="txtNombre" value="" class="elemento-seccion" placeholder="Nombre"/>
-            <input type="password" name="txtPassword" value="" class="elemento-seccion" placeholder="Password"/>
-            <input type="text" name="txtEmail" value="" class="elemento-seccion" placeholder="Email"/>
-            <input type="text" name="txtTelefono" value="" class="elemento-seccion" placeholder="Teléfono"/>
-            <input type="text" name="txtDireccion" value="" class="elemento-seccion" placeholder="Direccion"/>
+            <input type="text" name="txtRut" value="" class="elemento-seccion" placeholder="Rut" required="true"/>
+            <input type="text" name="txtNombre" value="" class="elemento-seccion" placeholder="Nombre" required="true"/>
+            <input type="password" name="txtPassword" value="" class="elemento-seccion" placeholder="Password" required="true"/>
+            <input type="password" name="txtPassword2" value="" class="elemento-seccion" placeholder="repetir Password" required="true"/>
+            <input type="text" name="txtEmail" value="" class="elemento-seccion" placeholder="Email" required="true"/>
+            <input type="text" name="txtTelefono" value="" class="elemento-seccion" placeholder="Teléfono" required="true"/>
+            <input type="text" name="txtDireccion" value="" class="elemento-seccion" placeholder="Direccion" required="true"/>
             <div class="elemento-seccion"><input type="checkbox" name="chkTerminos" value="ON"/>Acepto los términos</div>
             <input type="submit" value="Registrarse" name="btnRegistrarse" class="elemento-seccion" />
         </div>

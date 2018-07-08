@@ -1,8 +1,9 @@
 <?php
 include_once '../bd/ClasePDO.php';
-include_once '../dto/Particular.php';
+include_once '../dto/Usuario.php';
+include_once 'UsuarioDao.php';
 include_once 'BaseDao.php';
-include_once 'ParticularDao.php';
+
 
 class UsuarioDaoImp implements UsuarioDao{
     
@@ -155,6 +156,23 @@ class UsuarioDaoImp implements UsuarioDao{
             echo "Error dao al buscar cliente " . $exc->getMessage();
         }
         return $usuario;
+    }
+    
+    public function existeRegistro($key) {
+        try {
+            $pdo = new clasePDO();
+            $stmt= $pdo->prepare("SELECT RUT FROM usuario WHERE rut=?");
+            $stmt->bindParam(1, $key);
+            $stmt->execute();
+            
+            if(count($stmt->fetchAll())>0){
+                return TRUE;
+            }
+            $pdo=NULL;            
+        } catch (Exception $exc) {
+            echo "Error dao al validar rut ".$exc->getMessage();
+        }
+        return FALSE;
     }
 
 }
