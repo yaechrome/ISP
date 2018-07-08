@@ -95,10 +95,10 @@ and open the template in the editor.
     </head>
     <body>
         <form action="resultadoAnalisis.php" method="POST" class="container-formulario">
-            <canvas id="myChart" width="500" height="500" class="elemento-formulario"></canvas>
+            <canvas id="myChart" width="600" height="500" class="elemento-formulario"></canvas>
             <div class="grid-wrapper elemento-formulario">
-                <div>Código Muestra</div>
-                <div>Estado</div>
+                <div>Tipo de análisis</div>
+                <div>Resultado en PPM</div>
                 <?php
                 for ($x = 0; $x <= 10; $x++) {
                     ?>
