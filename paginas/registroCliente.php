@@ -2,6 +2,8 @@
 
 include_once '../dto/Usuario.php';
 include_once '../dao/UsuarioDaoImp.php';
+include_once '../dto/Telefono.php';
+include_once '../dao/TelefonoDaoImp.php';
 
 $dao = new UsuarioDaoImp();
 $rut = trim($_POST["txtRut"]);
@@ -35,12 +37,12 @@ $mensaje = null;
             if($dao->crear($usuario)){
                 $mensaje= "Usuario registrado con exito";
                
-//                $usuario2 = $dao->buscarPorRutCliente($rut);
-//                $telefonoDto = new Telefono();
-//                $telefonoDto->setNumero($telefono);
-//                $telefonoDto->setParticular($usuario2);
-//                $telefonoDao = new TelefonoDaoImp();
-//                $telefonoDao->crear($telefonoDto);
+                $usuario2 = $dao->buscarPorRutCliente($rut);
+                $telefonoDto = new Telefono();
+                $telefonoDto->setNumero($telefono);
+                $telefonoDto->setParticular($usuario2);
+                $telefonoDao = new TelefonoDaoImp();
+                $telefonoDao->crear($telefonoDto);
                 
                  echo "<script> alert('$mensaje') </script>";
             }else{

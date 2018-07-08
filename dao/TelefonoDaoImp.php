@@ -32,7 +32,7 @@ class TelefonoDaoImp implements TelefonoDao{
     public function crear($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("INSERT INTO telefono(numeroTelefono, codigoParticular) VALUES(?,?");
+            $stmt = $pdo->prepare("INSERT INTO telefono(numeroTelefono, codigoParticular) VALUES(?,?)");
 
             $stmt->bindValue(1, $dto->getNumero());
             $stmt->bindValue(2, $dto->getParticular()->getCodigo());

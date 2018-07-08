@@ -38,8 +38,7 @@ class UsuarioDaoImp implements UsuarioDao{
     public function crear($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("INSERT INTO usuario ( rut, password,"
-                    . "nombre, direccion, email, perfil) VALUES(?,?,?,?,?,?");
+            $stmt = $pdo->prepare("INSERT INTO usuario ( rut, password, nombre, direccion, email, perfil) VALUES(?,?,?,?,?,?)");
 
             $stmt->bindValue(1, $dto->getRut());
             $stmt->bindValue(2, $dto->getPassword());
