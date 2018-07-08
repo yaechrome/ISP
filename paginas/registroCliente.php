@@ -52,6 +52,6 @@ $mensaje = null;
         }
     }
     
-include_once './ventanaRegistroCliente.php';
 
-//include_once '../login/Registrarse.php';
+
+include_once '../login/Login.html';
