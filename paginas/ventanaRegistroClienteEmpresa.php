@@ -43,6 +43,7 @@ and open the template in the editor.
                 <h1>Registrarse</h1>
             <input type="text" name="txtRut" value="" class="elemento-seccion" placeholder="Rut"/>
             <input type="text" name="txtNombre" value="" class="elemento-seccion" placeholder="Nombre"/>
+            <input type="text" name="txtDireccion" value="" class="elemento-seccion" placeholder="Direccion"/>
             <input type="password" name="txtPassword" value="" class="elemento-seccion" placeholder="Password"/>
             
             <div class="elemento-seccion"><input type="checkbox" name="chkTerminos" value="ON"/>Acepto los términos</div>
