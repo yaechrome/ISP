@@ -6,10 +6,21 @@ class Empleado {
     private $nombre;
     private $password;
     private $categoria;
-    
+    private $estado;
+            
     function __construct() {
         
     }
+    
+    function getEstado() {
+        return $this->estado;
+    }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+        
     function getRut() {
         return $this->rut;
     }

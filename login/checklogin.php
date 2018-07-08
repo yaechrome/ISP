@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
     //header("location:panel-control.php"); 
     include_once '../login/panel-control.php';
  } else { 
-    $sql = "SELECT * FROM empleado WHERE rutEmpleado = '$username' and passwordEmpleado = '$password'";// and estado ='Activo' ";
+    $sql = "SELECT * FROM empleado WHERE rutEmpleado = '$username' and passwordEmpleado = '$password' and estado ='Activo' ";
 
     $result = $conexion->query($sql);
     if($result->num_rows > 0){
