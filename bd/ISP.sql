@@ -68,7 +68,8 @@ CREATE TABLE `Usuario` (
   `email` varchar(100) DEFAULT '',
   `perfil` varchar(20) NOT NULL DEFAULT '',
   `estado` varchar(10) NOT NULL DEFAULT 'Activo',
-  PRIMARY KEY (`codigo`)
+  PRIMARY KEY (`codigo`),
+  UNIQUE KEY `rut` (`rut`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Usuario` WRITE;

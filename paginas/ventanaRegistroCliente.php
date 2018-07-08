@@ -46,7 +46,7 @@ and open the template in the editor.
             <input type="password" name="txtPassword" value="" class="elemento-seccion" placeholder="Password"/>
             <input type="text" name="txtEmail" value="" class="elemento-seccion" placeholder="Email"/>
             <input type="text" name="txtTelefono" value="" class="elemento-seccion" placeholder="Teléfono"/>
-            <label><input type="checkbox" name="chkTerminos" value="ON" class="elemento-seccion" />Acepto los términos</label>
+            <div class="elemento-seccion"><input type="checkbox" name="chkTerminos" value="ON"/>Acepto los términos</div>
             <input type="submit" value="Registrarse" name="btnRegistrarse" class="elemento-seccion" />
         </div>
         </form>
