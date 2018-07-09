@@ -8,7 +8,7 @@ interface AnalisisMuestraDao extends BaseDao{
     
     public function buscarPorRutReceptor($rut);
     
-    public function reporteRecepcionXReceptor($rut);
+    public function reporteRecepcionXReceptor();
     
     public function buscarEnProceso();
     

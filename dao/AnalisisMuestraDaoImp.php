@@ -212,9 +212,9 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         $lista = new ArrayObject();
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestra WHERE estado=?");
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestra WHERE estado='En Proceso'");
 
-            $stmt->bindParam(1, $codigo);
+            
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
@@ -232,8 +232,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                 $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
                
                 $analisisMuestra->setEmpleado($empleado);
-                
-                
+
                 $analisisMuestra->setId($value["idAnalisisMuestra"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
@@ -249,9 +248,27 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         
     }
 
-    public function reporteRecepcionXReceptor($rut) {
+    public function reporteRecepcionXReceptor() {
         $lista = new ArrayObject();
-        
+        try {
+            $pdo= new clasePDO();
+            $stmt = $pdo->prepare("select rutEmpleadoRecibe, nombreEmpleado, count(idAnalisisMuestras) as cantidad from analisismuestras join empleado on (empleado.rutEmpleado = analisisMuestras.rutEmpleadoRecibe)");
+
+            
+            $stmt->execute();
+            $resultado = $stmt->fetchAll();
+            foreach ($resultado as $value) {
+                $reporte = new Reporte();             
+                $reporte->setRut($value["rutEmpleadoRecibe"]);
+                $reporte->setNombre($value["nombreEmpleado"]);
+                $reporte->setCantidad($value["cantidad"]);
+                $lista->append($reporte);
+            }
+            $pdo=NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar reporte de analisis ".$exc->getMessage();
+        }
+        return $lista;
     }
 
 }

@@ -129,8 +129,26 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         return FALSE;
     }
 
-    public function reporteAnalisisXTecnico($rut) {
-        
+    public function reporteAnalisisXTecnico() {
+        $lista = new ArrayObject();
+        try {
+            $pdo= new clasePDO();
+            $stmt = $pdo->prepare("select rutEmpleadoAnalista, nombreEmpleado, count(rutEmpleadoAnalista) as cantidad from resultadoanalisis join empleado on (empleado.rutEmpleado = resultadoanalisis.rutEmpleadoAnalista)");
+            
+            $stmt->execute();
+            $resultado = $stmt->fetchAll();
+            foreach ($resultado as $value) {
+                $reporte = new Reporte();             
+                $reporte->setRut($value["rutEmpleadoAnalista"]);
+                $reporte->setNombre($value["nombreEmpleado"]);
+                $reporte->setCantidad($value["cantidad"]);
+                $lista->append($reporte);
+            }
+            $pdo=NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar reporte de analisis ".$exc->getMessage();
+        }
+        return $lista;
     }
 
 }
