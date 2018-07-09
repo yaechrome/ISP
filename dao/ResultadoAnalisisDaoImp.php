@@ -114,7 +114,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     public function modificar($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update resultadoanalisis set estado=?, fechaRegistro=now()  where idAnalisisMuestra=?");
+            $stmt = $pdo->prepare("update resultadoanalisis set estado=?, fechaRegistro=now() where idAnalisisMuestra=?");
 
             $stmt->bindValue(1, $dto->getEstado());
             $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
