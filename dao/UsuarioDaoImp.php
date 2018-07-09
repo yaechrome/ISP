@@ -32,7 +32,7 @@ class UsuarioDaoImp implements UsuarioDao{
         } catch (Exception $exc) {
             echo "Error dao al buscar usuario " . $exc->getMessage();
         }
-        return $particular;
+        return $usuario;
     }
 
     public function crear($dto) {
