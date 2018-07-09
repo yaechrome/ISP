@@ -87,9 +87,9 @@ $usuario = $_SESSION["cliente"];
         <h1>Recepción de muestras</h1>
         <form id="sel" action="recepcionMuestras.php" method="POST" class="container-formulario">
             <div class="elemento-formulario delgado container-seccion">
-                <input type="text" name="txtCodigo" value="<?= $usuario->getCodigo() ?>" placeholder="Código Cliente" class="elemento-seccion"/>
-                <input type="text" name="txtRut" value="<?= $usuario->getRut() ?>" placeholder="Rut Cliente" class="elemento-seccion"/>
-                <input type="text" name="txtNombre" value="<?= $usuario->getNombre() ?>" placeholder="Nombre Cliente" class="elemento-seccion"/>  
+                <input type="text" name="txtCodigo" value="<?= $usuario->getCodigo() ?>" disabled="true" class="elemento-seccion"/>
+                <input type="text" name="txtRut" value="<?= $usuario->getRut() ?>" disabled="true" class="elemento-seccion"/>
+                <input type="text" name="txtNombre" value="<?= $usuario->getNombre() ?>" disabled="true" class="elemento-seccion"/>  
             </div>
             <div class="elemento-formulario delgado container-seccion">
                 <div class="elemento-seccion">Fecha de recepción</div>
