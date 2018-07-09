@@ -3,7 +3,7 @@ include_once '../dto/Usuario.php';
 include_once '../dto/TipoAnalisis.php';
 session_start();
 
-$usuario = $_SESSION["usuario"];
+$usuario = $_SESSION["cliente"];
 ?>
 <!DOCTYPE html>
 <html>
