@@ -168,7 +168,7 @@ CREATE TABLE `ResultadoAnalisis` (
   `fechaRegistro` date DEFAULT NULL,
   `PPM` int(11) DEFAULT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'En Proceso',
-  `rutEmpleadoAnalista` varchar(10) NOT NULL DEFAULT '',
+  `rutEmpleadoAnalista` varchar(10) DEFAULT '',
   KEY `TipoResultado` (`idTipoAnalisis`),
   KEY `MuestraResultado` (`idAnalisisMuestras`),
   KEY `EmpleadoResultado` (`rutEmpleadoAnalista`),
