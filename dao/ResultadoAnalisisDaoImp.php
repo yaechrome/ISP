@@ -13,13 +13,10 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     public function crear($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("INSERT INTO resultadoanalisis(idTipoAnalisis, idAnalisisMuestra,"
-                    . "PPM, rutEmpleadoAnalista) VALUES(?,?,?,?");
+            $stmt = $pdo->prepare("INSERT INTO resultadoanalisis(idTipoAnalisis, idAnalisisMuestra) VALUES(?,?");
 
             $stmt->bindValue(1, $dto->getTipoAnalisis()->getId());
             $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
-            $stmt->bindValue(3, $dto->getPpm());
-            $stmt->bindValue(4, $dto->getEmpleado()->getRut());
             
             $stmt->execute();
             if ($stmt->rowCount() > 0)
@@ -114,10 +111,12 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     public function modificar($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update resultadoanalisis set estado=?, fechaRegistro=now() where idAnalisisMuestra=?");
+            $stmt = $pdo->prepare("update resultadoanalisis set estado=?, fechaRegistro=now(), rutEmpleadoAnalista=?  where idAnalisisMuestra=?");
 
             $stmt->bindValue(1, $dto->getEstado());
-            $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
+            $stmt->bindValue(2, $dto->getEmpleado()->getRut());
+            $stmt->bindValue(3, $dto->getAnalisisMuestra()->getId());
+            
 
             $stmt->execute();
             if ($stmt->rowCount() > 0)
@@ -127,6 +126,10 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
             echo "Error dao al modificar estado de resultado de analisis" . $exc->getMessage();
         }
         return FALSE;
+    }
+
+    public function reporteAnalisisXTecnico($rut) {
+        
     }
 
 }

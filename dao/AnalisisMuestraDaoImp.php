@@ -206,4 +206,12 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         return $analisisMuestra;
     }
 
+    public function buscarEnProceso() {
+        
+    }
+
+    public function reporteRecepcionXReceptor($rut) {
+        
+    }
+
 }
