@@ -165,8 +165,8 @@ DROP TABLE IF EXISTS `ResultadoAnalisis`;
 CREATE TABLE `ResultadoAnalisis` (
   `idTipoAnalisis` int(11) unsigned NOT NULL,
   `idAnalisisMuestras` int(10) unsigned NOT NULL,
-  `fechaRegistro` date NOT NULL,
-  `PPM` int(11) NOT NULL,
+  `fechaRegistro` date DEFAULT NULL,
+  `PPM` int(11) DEFAULT NULL,
   `estado` varchar(15) NOT NULL DEFAULT 'En Proceso',
   `rutEmpleadoAnalista` varchar(10) NOT NULL DEFAULT '',
   KEY `TipoResultado` (`idTipoAnalisis`),
