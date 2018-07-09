@@ -7,7 +7,8 @@ include_once 'AnalisisMuestraDao.php';
 class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
 
     public function buscarPorCodigoCliente($codigo) {
-        $analisisMuestra = NULL;
+        $lista = new ArrayObject();
+        
         try {
             $pdo= new clasePDO();
             $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE codigoCliente=?");
@@ -36,13 +37,14 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
-                
+                $analisisMuestra->setEstado($value["estado"]);
+                $lista->append($analisisMuestra);
             }
             $pdo=NULL;
         } catch (Exception $exc) {
             echo "Error dao al buscar Analisis de muestras por cliente ".$exc->getMessage();
         }
-        return $analisisMuestra;
+        return $lista;
         
     }
 
@@ -70,6 +72,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
     }
 
     public function listar() {
+        $lista = new ArrayObject();
         $analisisMuestra = NULL;
         try {
             $pdo= new clasePDO();
@@ -96,13 +99,14 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
-                
+                $analisisMuestra->setEstado($value["estado"]);
+                $lista->append($analisisMuestra);
             }
             $pdo=NULL;
         } catch (Exception $exc) {
             echo "Error dao al buscar Analisis de muestras ".$exc->getMessage();
         }
-        return $analisisMuestra;
+        return $lista;
     }
 
     public function modificar($dto) {
@@ -110,27 +114,23 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             
             $pdo = new clasePDO();
             $stmt = null;
-            $stmt = $pdo->prepare("update analisismuestras(temperaturaMuestra=?,"
-                        . "cantidadMuestra=?,codigoCliente=?,rutEmpleadoRecibe=? where idAnalisisMuestras=?");
+            $stmt = $pdo->prepare("update analisismuestras estado=? where idAnalisisMuestras=?");
               
             
-            $stmt->bindValue(3, $dto->getUsuario()->getCodigo());
-            
-            $stmt->bindValue(1, $dto->getTemperaturaMuestra());
-            $stmt->bindValue(2, $dto->getCantidadMuestra());
-            $stmt->bindValue(4, $dto->getEmpleado()->getRut());
-            $stmt->bindValue(5, $dto->getId());
+            $stmt->bindValue(1, $dto->getEstado());
+            $stmt->bindValue(2, $dto->getId());
             $stmt->execute();
             if ($stmt->rowCount() > 0)
                 return TRUE;
             $pdo = NULL;
         } catch (Exception $exc) {
-            echo "Error dao al modificar analisis " . $exc->getMessage();
+            echo "Error dao al modificar estado de analisis " . $exc->getMessage();
         }
         return FALSE;
     }
 
     public function buscarPorRutReceptor($rut) {
+        $lista = new ArrayObject();
         $analisisMuestra = NULL;
         try {
             $pdo= new clasePDO();
@@ -159,13 +159,14 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
-                
+                $analisisMuestra->setEstado($value["estado"]);
+                $lista->append($analisisMuestra);
             }
             $pdo=NULL;
         } catch (Exception $exc) {
             echo "Error dao al buscar Analisis de muestras por receptor ".$exc->getMessage();
         }
-        return $analisisMuestra;
+        return $lista;
         
     }
 
@@ -197,6 +198,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
+                $analisisMuestra->setEstado($value["estado"]);
                 
             }
             $pdo=NULL;
@@ -207,10 +209,48 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
     }
 
     public function buscarEnProceso() {
+        $lista = new ArrayObject();
+        try {
+            $pdo= new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestra WHERE estado=?");
+
+            $stmt->bindParam(1, $codigo);
+            $stmt->execute();
+            $resultado = $stmt->fetchAll();
+            foreach ($resultado as $value) {
+                $analisisMuestra =new AnalisisMuestras();
+                
+                $usuario = new Usuario();
+                $usuarioDao = new UsuarioDaoImp();
+                $usuario = $usuarioDao->buscarPorClavePrimaria($value["codigoCliente"]);
+                
+                $analisisMuestra->setUsuario($usuario);
+                
+                
+                $empleado = new Empleado();
+                $empleadoDao = new EmpleadoDaoImp();
+                $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
+               
+                $analisisMuestra->setEmpleado($empleado);
+                
+                
+                $analisisMuestra->setId($value["idAnalisisMuestra"]);
+                $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
+                $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
+                $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
+                $analisisMuestra->setEstado($value["estado"]);
+                $lista->append($analisisMuestra);
+            }
+            $pdo=NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar Analisis de muestras por cliente ".$exc->getMessage();
+        }
+        return $lista;
         
     }
 
     public function reporteRecepcionXReceptor($rut) {
+        $lista = new ArrayObject();
         
     }
 

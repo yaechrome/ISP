@@ -6,7 +6,6 @@ class ResultadoAnalisis {
     private $analisisMuestra;
     private $fechaRegistro;
     private $ppm;
-    private $estado;
     private $empleado;
     
     function __construct() {
@@ -28,9 +27,6 @@ class ResultadoAnalisis {
         return $this->ppm;
     }
 
-    function getEstado() {
-        return $this->estado;
-    }
 
     function getEmpleado() {
         return $this->empleado;
@@ -50,10 +46,6 @@ class ResultadoAnalisis {
 
     function setPpm($ppm) {
         $this->ppm = $ppm;
-    }
-
-    function setEstado($estado) {
-        $this->estado = $estado;
     }
 
     function setEmpleado($empleado) {

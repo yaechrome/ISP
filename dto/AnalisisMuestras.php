@@ -8,11 +8,21 @@ class AnalisisMuestras {
     private $cantidadMuestra;
     private $usuario;
     private $empleado;
+    private $estado;
     
     function __construct() {
         
     }
-    function getId() {
+    
+    function getEstado() {
+        return $this->estado;
+    }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+        function getId() {
         return $this->id;
     }
 

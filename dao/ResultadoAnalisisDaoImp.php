@@ -54,7 +54,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
                 $resultadoAnalisis->setAnalisisMuestra($analisisMuestra);               
                 $resultadoAnalisis->setFechaRegistro($value["fechaRegistro"]);
                 $resultadoAnalisis->setPpm($value["PPM"]);
-                $resultadoAnalisis->setEstado($value["estado"]);
+               
                 $resultadoAnalisis->setEmpleado($empleado);
 
                 $lista->append($resultadoAnalisis);
@@ -94,7 +94,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
                 $resultadoAnalisis->setAnalisisMuestra($analisisMuestra);               
                 $resultadoAnalisis->setFechaRegistro($value["fechaRegistro"]);
                 $resultadoAnalisis->setPpm($value["PPM"]);
-                $resultadoAnalisis->setEstado($value["estado"]);
+                
                 $resultadoAnalisis->setEmpleado($empleado);
 
                 $lista->append($resultadoAnalisis);
@@ -111,11 +111,12 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     public function modificar($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update resultadoanalisis set estado=?, fechaRegistro=now(), rutEmpleadoAnalista=?  where idAnalisisMuestra=?");
+            $stmt = $pdo->prepare("update resultadoanalisis set fechaRegistro=now(), rutEmpleadoAnalista=?  where idAnalisisMuestra=? and idTipoAnalisis =?");
 
-            $stmt->bindValue(1, $dto->getEstado());
-            $stmt->bindValue(2, $dto->getEmpleado()->getRut());
-            $stmt->bindValue(3, $dto->getAnalisisMuestra()->getId());
+            
+            $stmt->bindValue(1, $dto->getEmpleado()->getRut());
+            $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
+            $stmt->bindValue(2, $dto->getTipoAnalisis()->getId());
             
 
             $stmt->execute();
