@@ -48,6 +48,6 @@
             </div>
             <input type="submit" value="Guardar Análisis" name="btnGuardar" class="elemento-formulario"/>
         </form>
-
+        <a href=../login/volver.php>Volver</a> <br>
     </body>
 </html>

@@ -113,5 +113,6 @@ $usuario = $_SESSION["cliente"];
                 <input type="submit" value="Guardar" name="btnGuardar" class="elemento-seccion"/>
             </div>
         </form>
+        <a href=../login/volver.php>Volver</a> <br>
     </body>
 </html>

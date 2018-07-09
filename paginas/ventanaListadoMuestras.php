@@ -31,5 +31,6 @@
             </div>
 
         </form>
+        <a href=../login/volver.php>Volver</a> <br>
     </body>
 </html>
