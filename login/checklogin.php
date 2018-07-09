@@ -26,9 +26,7 @@ $sql = "SELECT * FROM usuario WHERE rut = '$username' and password = '$password'
 
 $result = $conexion->query($sql);
 
-
 if ($result->num_rows > 0) {     
- 
     $row = $result->fetch_array(MYSQLI_ASSOC);
     $usuario = new Usuario();
     $usuario->setCodigo($row['codigo']);
@@ -49,7 +47,6 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['start'] = time();
     $_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
-
     
     //echo "<br><br><a href=panel-control.php>Menu</a>"; 
     //header("location:panel-control.php"); 

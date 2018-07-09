@@ -39,7 +39,7 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao{
             foreach ($tipos as $value) {
                 $tipoAnalisis = new TipoAnalisis();
                 $tipoAnalisis->setId($value["idTipoAnalisis"]);
-                $tipoAnalisis->setNombre("nombre");
+                $tipoAnalisis->setNombre($value["nombre"]);
 
                 $lista->append($tipoAnalisis);
             }

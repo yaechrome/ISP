@@ -39,14 +39,14 @@ if ($now > $_SESSION['expire']) {
                                 <div class="card-content pad24">
                                     <div class="mb20"><h3 class="big header black-text">MENU</h3></div>   
                                     <ul>
-                                        <?php if ($_SESSION['perfil'] == 'Postulante') { ?>
-                                            <p><a class="btn purple lighten-1" href="../paginas/validarPostulante.php" >Crear Postulacion</a></p>
+                                        <?php if ($_SESSION['tipo'] == 'usuario') { ?>
+                                        <p><a class="btn purple lighten-1" href="../paginas/ventanaRecepcionMuestras.php" >Recepción Muestras</a></p>
                                             <br>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBuscarPorRut.php" >Estado de Postulacion</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaResultadoAnalisis.php" >Resultado de Análisis</a></p>
                                         <?php } else { ?>
-                                            <p><a class="btn purple lighten-1" href="../paginas/validarPostulante.php" >Crear Postulacion</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaRecepcionMuestras.php" >Recepción Muestras</a></p>
                                             <br>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBuscarSolicitud.php" >Buscar Postulacion</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaResultadoAnalisis.php" >Resultado de Análisis</a></p>
                                         <?php } ?>
                                     </ul>
                                 </div>

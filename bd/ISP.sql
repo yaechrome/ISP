@@ -167,7 +167,7 @@ CREATE TABLE `ResultadoAnalisis` (
   `idAnalisisMuestras` int(10) unsigned NOT NULL,
   `fechaRegistro` date NOT NULL,
   `PPM` int(11) NOT NULL,
-  `estado` bit(1) NOT NULL,
+  `estado` varchar(15) NOT NULL DEFAULT 'En Proceso',
   `rutEmpleadoAnalista` varchar(10) NOT NULL DEFAULT '',
   KEY `TipoResultado` (`idTipoAnalisis`),
   KEY `MuestraResultado` (`idAnalisisMuestras`),

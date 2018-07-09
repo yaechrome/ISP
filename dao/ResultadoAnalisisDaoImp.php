@@ -14,13 +14,12 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("INSERT INTO resultadoanalisis(idTipoAnalisis, idAnalisisMuestra,"
-                    . "fechaRegistro, PPM, estado, rutEmpleadoAnalista) VALUES(?,?,now(),?,?,?");
+                    . "fechaRegistro, PPM, rutEmpleadoAnalista) VALUES(?,?,now(),?,?");
 
             $stmt->bindValue(1, $dto->getTipoAnalisis()->getId());
             $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
             $stmt->bindValue(3, $dto->getPpm());
-            $stmt->bindValue(4, $dto->getEstado());
-            $stmt->bindValue(5, $dto->getEmpleado()->getRut());
+            $stmt->bindValue(4, $dto->getEmpleado()->getRut());
             
             $stmt->execute();
             if ($stmt->rowCount() > 0)
@@ -58,7 +57,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
                 $resultadoAnalisis->setAnalisisMuestra($analisisMuestra);               
                 $resultadoAnalisis->setFechaRegistro($value["fechaRegistro"]);
                 $resultadoAnalisis->setPpm($value["PPM"]);
-                $resultadoAnalisis->setPpm($value["estado"]);
+                $resultadoAnalisis->setEstado($value["estado"]);
                 $resultadoAnalisis->setEmpleado($empleado);
 
                 $lista->append($resultadoAnalisis);
@@ -98,7 +97,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
                 $resultadoAnalisis->setAnalisisMuestra($analisisMuestra);               
                 $resultadoAnalisis->setFechaRegistro($value["fechaRegistro"]);
                 $resultadoAnalisis->setPpm($value["PPM"]);
-                $resultadoAnalisis->setPpm($value["estado"]);
+                $resultadoAnalisis->setEstado($value["estado"]);
                 $resultadoAnalisis->setEmpleado($empleado);
 
                 $lista->append($resultadoAnalisis);
