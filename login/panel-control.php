@@ -56,10 +56,18 @@ if ($now > $_SESSION['expire']) {
                                             <?php }
                                             if ($_SESSION['usuario']->getCategoria() == 'T') { ?>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaListadoMuestras.php" >Muestras en Proceso</a></p>
+                                            <br>
                                             <?php } 
                                             if ($_SESSION['usuario']->getCategoria() == 'A') { ?>
-                                            
+                                            <p><a class="btn purple lighten-1" href="" >Mantenedor Tipo de análisis</a></p>
+                                            <br>
+                                            <p><a class="btn purple lighten-1" href="" >Registrar empleado</a></p>
+                                            <br>
+                                            <p><a class="btn purple lighten-1" href="" >Dar baja a usuario</a></p>
+                                            <br>
+                                            <p><a class="btn purple lighten-1" href="" >Reportes</a></p>
                                             <?php }?>
+                                            
                                         <?php } ?>
                                     </ul>
                                 </div>
