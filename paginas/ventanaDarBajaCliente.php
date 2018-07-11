@@ -14,7 +14,7 @@ if ($_POST['accion'] == 'Dar de baja') {
     $sePudoDarDeBaja = $dao->darDeBaja($codigo);
     
     $mensaje = $sePudoDarDeBaja
-        ? "Se dio de baja el cliente número $codigo."
+        ? "Se dio de baja al cliente número $codigo."
         : "Hubo un problema al intentar dar de baja al usuario número $codigo.";
     
     htmlAlert($mensaje);
