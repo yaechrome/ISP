@@ -63,7 +63,8 @@ if($_SESSION['tipo'] == 'usuario'){
                 <div>Código Muestra</div>
                 <div>Estado</div>
                 <?php
-                    foreach ($_SESSION["busquedaMuestasCliente"] as $value) {
+                
+                    foreach ($_SESSION["busquedaMuestas"] as $value) {
 
                         ?>
                             <div><?php echo $value->getId()?></div>
