@@ -94,9 +94,9 @@ $usuario = $_SESSION["cliente"];
             </div>
             <div class="elemento-formulario delgado container-seccion">
                 <div class="elemento-seccion">Fecha de recepción</div>
-                <input type="date" name="txtFecha" value="" class="elemento-seccion"/>
-                <input type="number" name="txtTemperatura" value="" placeholder="Temperatura muestra" class="elemento-seccion"/>
-                <input type="number" name="txtCantidad" value="" placeholder="Cantidad de Muestra" class="elemento-seccion"/>
+                <input type="date" name="txtFecha" value="" class="elemento-seccion" required/>
+                <input type="number" name="txtTemperatura" value="" placeholder="Temperatura muestra" class="elemento-seccion" required/>
+                <input type="number" name="txtCantidad" value="" placeholder="Cantidad de Muestra" class="elemento-seccion" required/>
             </div>
             <div class="elemento-formulario ancho container-seccion">
                 <div class="elemento-seccion">Tipo de análisis a realizar</div>
@@ -109,7 +109,7 @@ $usuario = $_SESSION["cliente"];
                     <?php } ?>
                 </select>
                 <input type="button" value="Agregar" name="btnAgregar" class="elemento-seccion" v-on:Click="agregar" />
-                <textarea id="myText" name="txtSalida" class="elemento-seccion">
+                <textarea id="myText" name="txtSalida" class="elemento-seccion" required>
                 </textarea>
                 <input id="analisisJson" type="hidden" value="[]" name="analisisJson">
                 <input type="submit" value="Guardar" name="btnGuardar" class="elemento-seccion"/>
