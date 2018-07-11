@@ -42,13 +42,14 @@ $listaContactos = $conDao->listarPorCodigoEmpresa($codigo);
                 <div> <?php echo $value->getEmail(); ?> </div>
                 <div> <?php echo $value->getTelefono(); ?> </div>
             
-                <div><a href="eliminarContacto.php?id=<?php echo $value->getId() ?>">Eliminar</a></div>
+                <div><a href="eliminarContacto.php?rut=<?php echo $value->getRut() ?>">Eliminar</a></div>
                 
                 <?php    }?>
-                
                
-        </div>
+        </div>      
         
+        <div><a href="ventanaAgregarContacto.php">Agregar Contacto</a></div>
+             
         <br>
          <a href=../login/volver.php>Volver</a> <br>
     </body>
