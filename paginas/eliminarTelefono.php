@@ -1,6 +1,7 @@
 <?php
 
 include_once '../dao/TelefonoDaoImp.php';
+include_once '../login/sessionStart.php';
 
 $dao = new TelefonoDaoImp();
 $id = $_GET['id'];
