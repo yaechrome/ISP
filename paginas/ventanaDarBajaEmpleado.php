@@ -80,6 +80,11 @@ $htmlDeTodasLasPersonas = implode('', $htmlsDeTodasLasPersonas);
                 flex-wrap: wrap;
                 justify-content: space-around;
             }
+            .container-busquedas2 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
             .busqueda {
                 width: 50%;
                 min-width: 300px;
@@ -107,6 +112,11 @@ $htmlDeTodasLasPersonas = implode('', $htmlsDeTodasLasPersonas);
                     <?php selectPerfilesEmpleados('A'); ?>
                 </select>
                 <input type="submit" name="Buscar" value="Perfil">
+            </form>
+        </div>
+        <div class="container-busquedas2">
+            <form method="POST">
+                <input type="submit" value="Listar Todos" name="btnListarTodos" />
             </form>
         </div>
         <div class="grilla">
