@@ -1,6 +1,8 @@
 <?php
 include_once '../bd/ClasePDO.php';
 include_once '../dto/Telefono.php';
+include_once '../dto/Usuario.php';
+include_once 'UsuarioDaoImp.php';
 include_once 'BaseDao.php';
 include_once 'TelefonoDao.php';
 
@@ -75,20 +77,22 @@ class TelefonoDaoImp implements TelefonoDao{
 
     public function listarPorCodigoParticular($codigoParticular) {
         try {
-            $lista = new ArrayObject();
+            $lista = null;
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("select * from telefono where codigoParticular=?");
             $stmt->bindValue(1, $codigoParticular);
             $stmt->execute();
+            if($stmt->rowCount() > 0){
+                $lista = new ArrayObject();
+            }
             $registro = $stmt->fetchAll();
+            
             foreach ($registro as $value) {
-                $particular = new Usuario();
-                $particularDao = new UsuarioDaoImp();
-                $particular->particularDao->buscarPorClavePrimaria($value["codigoParticular"]);
-                $telefono->setId($value["id"]);
-                $telefono->setDescripcion($value["numeroTelefono"]);               
-                $telefono->setParticular($particular);
                 
+                $telefono = new Telefono();
+                $telefono->setId($value["id"]);
+                $telefono->setNumero($value["numeroTelefono"]);               
+
                 $lista->append($telefono);
             }
 

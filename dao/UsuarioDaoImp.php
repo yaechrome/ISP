@@ -16,7 +16,7 @@ class UsuarioDaoImp implements UsuarioDao{
             $stmt->execute();
             $registro = $stmt->fetchAll();
             foreach ($registro as $value) {
-                $usuario = new Particular();
+                $usuario = new Usuario();
                 $usuario->setCodigo($value["codigo"]);
                 $usuario->setRut($value["rut"]);
                 $usuario->setPassword($value["password"]);

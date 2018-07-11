@@ -20,11 +20,21 @@ class Usuario {
     private $email;
     private $perfil;
     private $estado;
+    private $telefonos;
     
     function __construct() {
         
     }
     
+    function getTelefonos() {
+        return $this->telefonos;
+    }
+
+    function setTelefonos($telefonos) {
+        $this->telefonos = $telefonos;
+    }
+
+        
     function getPerfil() {
         return $this->perfil;
     }
