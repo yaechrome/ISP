@@ -1,4 +1,5 @@
-<?php include_once '../dto/Usuario.php';
+<?php 
+include_once '../dto/Usuario.php';
 include_once '../dao/UsuarioDaoImp.php';
 include_once '../dao/AnalisisMuestraDaoImp.php';
 include_once '../dto/AnalisisMuestras.php';
@@ -8,7 +9,7 @@ include_once '../login/sessionStart.php';
 $usuario = $_SESSION["usuario"];
 $codigo = $usuario->getCodigo();	
 $dao = new AnalisisMuestraDaoImp();
-$listaAnalisis = $dao->buscarPorCodigoCliente($codigo)
+$_SESSION["busquedaMuestasCliente"] = $dao->buscarPorCodigoCliente($codigo)
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +47,7 @@ $listaAnalisis = $dao->buscarPorCodigoCliente($codigo)
                 <div>Código Muestra</div>
                 <div>Estado</div>
                 <?php
-                    foreach ($listaAnalisis as $value) {
+                    foreach ($_SESSION["busquedaMuestasCliente"] as $value) {
 
                         ?>
                             <div><?php echo $value->getId()?></div>

@@ -3,6 +3,10 @@ include_once '../bd/ClasePDO.php';
 include_once '../dto/AnalisisMuestras.php';
 include_once 'BaseDao.php';
 include_once 'AnalisisMuestraDao.php';
+include_once '../dao/UsuarioDaoImp.php';
+include_once '../dao/EmpleadoDaoImp.php';
+include_once '../dto/Usuario.php';
+include_once '../dto/Empleado.php';
 
 class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
 
