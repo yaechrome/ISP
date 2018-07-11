@@ -10,11 +10,12 @@ $daoEmpleado = new EmpleadoDaoImp();
 $usuario = $_SESSION["usuario"];
 $nombre = trim($_POST['txtNombre']);
 $estado = trim($_POST['txtEstado']);
+$password = trim($_POST['txtPassword']);
 
 $dto = $usuario;
 $dto->setNombre($nombre);
 $dto->setEstado($estado);
-    
+$dto->setPassword($password);   
 
 if ($_SESSION['tipo'] == 'usuario') {
     $direccion = trim($_POST['txtDireccion']);

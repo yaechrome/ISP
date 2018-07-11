@@ -23,7 +23,7 @@ $usuario = $_SESSION['usuario'];
     <head>
         <link rel="stylesheet" href="../static/css/codebeautify.css" type="text/css"/>
     <div class="text_right">
-        <a class="btn red darken-1" href=logout.php>Cerrar Sesion </a>
+        <a class="btn red darken-1" href=../login/logout.php>Cerrar Sesion </a>
     </div>
     <title>Menu</title>
 </head>

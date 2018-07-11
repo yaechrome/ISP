@@ -9,7 +9,8 @@ $usuario = $_SESSION["usuario"];
 $rut = $usuario->getRut();
 $nombre = $usuario->getNombre();
 $estado = $usuario->getEstado();
-
+$password = $usuario->getPassword();
+var_dump($password);
 if ($_SESSION['tipo'] == 'usuario') {
     $perfil = $usuario->getPerfil();
     $direccion = $usuario->getDireccion();
@@ -72,6 +73,8 @@ if ($_SESSION['tipo'] == 'usuario') {
                     <div>Email:</div>
                     <div><input type="text" name="txtEmail" value="<?= $email ?>" /></div>
                 <?php } ?>
+                <div>Password:</div>
+                <div><input type="password" name="txtPassword" value="<?= $password ?>" /></div>
             </div>
             <input type="submit" value="Guardar" name="btnGuardar" />
         </form>

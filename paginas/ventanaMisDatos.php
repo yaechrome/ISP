@@ -10,7 +10,9 @@ $rut = $usuario->getRut();
 $nombre = $usuario->getNombre();
 $estado = $usuario->getEstado();
 
+
 if ($_SESSION['tipo'] == 'usuario') {
+    $codigo = $usuario->getCodigo();
     $perfil = $usuario->getPerfil();
     $direccion = $usuario->getDireccion();
     $email = $usuario->getEmail();
@@ -50,6 +52,10 @@ if ($_SESSION['tipo'] == 'usuario') {
     <body>
         <h1>Mis Datos</h1>
         <div class="grid-wrapper elemento-formulario">
+            <?php if ($_SESSION['tipo'] == 'usuario') { ?>
+                <div>Código:</div>
+                <div><input type="text" name="txtCodigo" value="<?= $codigo ?>" disabled/></div>
+            <?php } ?>
             <div>Rut:</div>
             <div><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></div>
             <div>Nombre:</div>
@@ -64,6 +70,7 @@ if ($_SESSION['tipo'] == 'usuario') {
                 <div>Email:</div>
                 <div><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></div>
             <?php } ?>
+                
         </div>
         <a href="ventanaEditarMisDatos.php">Editar</a>
         <a href=../login/volver.php>Volver</a> <br>
