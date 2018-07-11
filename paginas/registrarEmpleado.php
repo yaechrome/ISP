@@ -1,6 +1,7 @@
 <?php
 include_once '../dto/Empleado.php';
 include_once '../dao/EmpleadoDaoImp.php';
+include_once '../login/sessionStart.php';
 
 $dao = new EmpleadoDaoImp();
 $rut = trim($_POST["txtRut"]);
