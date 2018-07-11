@@ -55,7 +55,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt= $pdo->prepare("select * from empleado");
+            $stmt= $pdo->prepare("select * from empleado where estado='Activo'");
             $stmt->execute();
             
             $resultado= $stmt->fetchAll();
