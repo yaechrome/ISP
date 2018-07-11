@@ -8,7 +8,7 @@ function htmlAlert($msg)
     echo '<script type="text/javascript">alert("' . $msg . '")</script>';
 }
 
-if ($_POST['accion'] == 'Dar de baja') {
+if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
     $dao = new EmpleadoDaoImp();
     $codigo = $_POST['codigo'];
     $sePudoDarDeBaja = $dao->darDeBaja($codigo);
