@@ -156,6 +156,35 @@ class UsuarioDaoImp implements UsuarioDao{
         }
         return $usuario;
     }
+
+    public function buscarPorPerfil($perfil) {
+        try {
+            $lista = new ArrayObject();
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("select * from usuario where perfil=?");
+            $stmt->bindValue(1, $perfil);
+            $stmt->execute();
+            $registro = $stmt->fetchAll();
+            foreach ($registro as $value) {
+                $usuario = new Usuario();
+                $usuario->setCodigo($value["codigo"]);
+                $usuario->setRut($value["rut"]);
+                $usuario->setPassword($value["password"]);
+                $usuario->setNombre($value["nombre"]);
+                $usuario->setDireccion($value["direccion"]);
+                $usuario->setEmail($value["email"]);
+                $usuario->setPerfil($value["perfil"]);
+                $usuario->setEstado($value["estado"]);
+
+                $lista->append($usuario);
+            }
+
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar cliente por perfil " . $exc->getMessage();
+        }
+        return $lista;
+    }
     
     public function existeRegistro($key) {
         try {
