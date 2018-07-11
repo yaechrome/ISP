@@ -22,6 +22,21 @@ if ($_SESSION['tipo'] == 'usuario') {
     $direccion = "";
     $email = "";
 }
+
+if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
+    
+    $dao = new UsuarioDaoImp();
+
+    $sePudoDarDeBaja = $dao->darDeBaja($codigo);
+
+        $mensaje = $sePudoDarDeBaja
+            ? "Se dio de baja al usuario con RUT $rut."
+            : "Hubo un problema al intentar dar de baja al usuario con RUT $rut.";
+    echo "<script> alert('$mensaje') </script>";
+
+    include_once '../login/logout.php';
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +82,12 @@ if ($_SESSION['tipo'] == 'usuario') {
             <?php if ($_SESSION['tipo'] == 'usuario') { ?>
                 <div>Direccion:</div>
                 <div><input type="text" name="txtDireccion" value="<?= $direccion ?>" disabled/></div>
-                <div>Email:</div>
+                <?php if($usuario->getPerfil() == 'Particular'){ ?><div>Email:</div>
                 <div><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></div>
+                <?php } ?>   
+                <form method="POST">
+                    <input type="submit" name="accion" value="Dar de baja">
+                </form>
             <?php } ?>
                 
         </div>
