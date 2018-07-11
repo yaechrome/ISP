@@ -1,7 +1,5 @@
 <?php
-include_once '../dto/Usuario.php';
 include_once '../dao/UsuarioDaoImp.php';
-include_once '../dto/Empleado.php';
 include_once '../login/sessionStart.php';
 include_once './perfilesEmpleados.php';
 $dao = new UsuarioDaoImp();
@@ -10,7 +8,6 @@ $rut = $usuario->getRut();
 $nombre = $usuario->getNombre();
 $estado = $usuario->getEstado();
 $password = $usuario->getPassword();
-var_dump($password);
 if ($_SESSION['tipo'] == 'usuario') {
     $perfil = $usuario->getPerfil();
     $direccion = $usuario->getDireccion();
@@ -42,9 +39,6 @@ if ($_SESSION['tipo'] == 'usuario') {
 
             .elemento-formulario {
                 min-width: 300px;
-            }
-            #myChart {
-
             }
         </style>
     </head>

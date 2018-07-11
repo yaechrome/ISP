@@ -62,7 +62,7 @@ $usuario = $_SESSION['usuario'];
                                             if ($usuario->getCategoria() == 'A') { ?>
                                             <p><a class="btn purple lighten-1" href="" >Mantenedor Tipo de análisis</a></p>
                                             <br>
-                                            <p><a class="btn purple lighten-1" href="" >Registrar empleado</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaRegistrarEmpleado.php" >Registrar empleado</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="" >Dar baja a usuario</a></p>
                                             <br>

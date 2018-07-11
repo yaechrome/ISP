@@ -35,15 +35,11 @@ if ($_SESSION['tipo'] == 'usuario') {
         $perfil = $usuario->getCategoria();
     }
     $dto->setCategoria($perfil);
-    var_dump($dto);
     if ($daoEmpleado->modificar($dto)) {
         echo "<script> alert('Empleado modificado con exito') </script>";
     } else {
         echo "<script> alert('Error al modificar Empleado') </script>";
     }
 }
-
-
-
 
 include_once '../login/volver.php';
