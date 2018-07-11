@@ -76,6 +76,7 @@ $usuario = $_SESSION["cliente"];
                                     .join(", ");
 
                             document.getElementById('myText').value = texto;
+                            document.getElementById('analisisJson').value = JSON.stringify(this.analisis);
                         }
                     }
 
@@ -110,6 +111,7 @@ $usuario = $_SESSION["cliente"];
                 <input type="button" value="Agregar" name="btnAgregar" class="elemento-seccion" v-on:Click="agregar" />
                 <textarea id="myText" name="txtSalida" class="elemento-seccion">
                 </textarea>
+                <input id="analisisJson" type="hidden" value="[]" name="analisisJson">
                 <input type="submit" value="Guardar" name="btnGuardar" class="elemento-seccion"/>
             </div>
         </form>
