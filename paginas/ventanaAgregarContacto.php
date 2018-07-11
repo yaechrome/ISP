@@ -31,8 +31,10 @@ include_once '../login/sessionStart.php';
                 <div>Telefono:</div>
                 <div><input type="password" name="txtTelefono" value="" required="true"/></div>
             </div>
+            <br>
             <input type="submit" value="Guardar" name="btnGuardar" />
         </form>
+        <br>
         <a href=../login/volver.php>Volver</a> <br>
     </body>
 </html>

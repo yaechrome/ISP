@@ -5,7 +5,7 @@ include_once '../dto/Contacto.php';
 include_once '../dao/ContactoDaoImp.php';
 include_once '../login/sessionStart.php';
 
-$dao = new UsuarioDaoImp();
+
 $usuario = $_SESSION["usuario"];
 $codigo = $usuario->getCodigo();	
 $conDao = new ContactoDaoImp();
@@ -47,7 +47,7 @@ $listaContactos = $conDao->listarPorCodigoEmpresa($codigo);
                 <?php    }?>
                
         </div>      
-        
+        <br
         <div><a href="ventanaAgregarContacto.php">Agregar Contacto</a></div>
              
         <br>

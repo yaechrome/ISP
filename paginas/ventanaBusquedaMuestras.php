@@ -1,9 +1,16 @@
+<?php include_once '../dto/Usuario.php';
+include_once '../dao/UsuarioDaoImp.php';
+include_once '../dao/AnalisisMuestraDaoImp.php';
+include_once '../dto/AnalisisMuestras.php';
+include_once '../login/sessionStart.php';
+
+
+$usuario = $_SESSION["usuario"];
+$codigo = $usuario->getCodigo();	
+$dao = new AnalisisMuestraDaoImp();
+$listaAnalisis = $dao->buscarPorCodigoCliente($codigo)
+?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -33,19 +40,23 @@ and open the template in the editor.
                 <input type="text" name="txtCodigoMuestra" value="" placeholder="Código muestra"/>
                 <input type="submit" value="Buscar" name="btnBuscar" />
             </div>
+            <br>
+            <br>
             <div class="grid-wrapper elemento-formulario ancho">
                 <div>Código Muestra</div>
                 <div>Estado</div>
                 <?php
-                    for ($x = 0; $x <= 10; $x++) {
+                    foreach ($listaAnalisis as $value) {
+
                         ?>
-                            <div>123</div>
-                            <div>Procesado</div>
+                            <div><?php echo $value->getId()?></div>
+                            <div><?php echo $value->getEstado()?></div>
                         <?php
                     }
                 ?>
             </div>
-                
+            <br>
+            <br>
         </form>
         <a href=../login/volver.php>Volver</a> <br>
     </body>

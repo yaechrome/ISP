@@ -11,29 +11,15 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE codigoCliente=?");
+            $stmt = $pdo->prepare("select * from analisismuestras WHERE codigoCliente=? order by fechaRecepcion DESC");
 
             $stmt->bindParam(1, $codigo);
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             foreach ($resultado as $value) {
                 $analisisMuestra =new AnalisisMuestras();
-                
-                $usuario = new Usuario();
-                $usuarioDao = new UsuarioDaoImp();
-                $usuario = $usuarioDao->buscarPorClavePrimaria($value["codigoCliente"]);
-                
-                $analisisMuestra->setUsuario($usuario);
-                
-                
-                $empleado = new Empleado();
-                $empleadoDao = new EmpleadoDaoImp();
-                $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
-               
-                $analisisMuestra->setEmpleado($empleado);
-                
-                
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
+
+                $analisisMuestra->setId($value["idAnalisisMuestras"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
@@ -101,7 +87,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                     $analisisMuestra->setEmpleado($empleado);
                 }
                 
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
+                $analisisMuestra->setId($value["idAnalisisMuestras"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
@@ -161,7 +147,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                     $analisisMuestra->setEmpleado($empleado);
                 }
                 
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
+                $analisisMuestra->setId($value["idAnalisisMuestras"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
@@ -200,7 +186,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                     $analisisMuestra->setEmpleado($empleado);
                 }
                 
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
+                $analisisMuestra->setId($value["idAnalisisMuestras"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
@@ -218,7 +204,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         $lista = new ArrayObject();
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("SELECT * FROM analisismuestra WHERE estado='En Proceso'");
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestras WHERE estado='En Proceso'");
 
             
             $stmt->execute();
@@ -239,7 +225,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                
                 $analisisMuestra->setEmpleado($empleado);
 
-                $analisisMuestra->setId($value["idAnalisisMuestra"]);
+                $analisisMuestra->setId($value["idAnalisisMuestras"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
                 $analisisMuestra->setTemperaturaRecepcion($value["temperaturaMuestra"]);
                 $analisisMuestra->setCantidadMuestra($value["cantidadMuestra"]);
