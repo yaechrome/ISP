@@ -85,22 +85,19 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
                 <div><input type="text" name="txtDireccion" value="<?= $direccion ?>" disabled/></div>
                 <?php if($usuario->getPerfil() == 'Particular'){ ?><div>Email:</div>
                 <div><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></div>
-                    <?php
-                    include_once '../dto/Telefono.php';
-                    include_once '../dao/TelefonoDaoImp.php';
-                    $telDao = new TelefonoDaoImp();
-                    $listaTelefonos = $telDao->listarPorCodigoParticular($codigo);
-                    foreach ($listaTelefonos as $value) {  ?>
-                    <div>Telefono:</div>
-                    <div> <?php echo $value->getNumero(); ?> </div>
-                    <?php    }?>
+                <a href="ventanaTelefonos.php">Telefonos</a>
                 <?php } ?>   
-                <form method="POST">
-                    <input type="submit" name="accion" value="Dar de baja">
-                </form>
+                
             <?php } ?>
                 
         </div>
+        <br>
+        <?php if($_SESSION['tipo'] == 'usuario'){?>
+        <form method="POST">
+                    <input type="submit" name="accion" value="Dar de baja">
+                </form>
+        <br>
+        <?php }?>
         <a href="ventanaEditarMisDatos.php">Editar</a>
         <a href=../login/volver.php>Volver</a> <br>
     </body>

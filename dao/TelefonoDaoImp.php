@@ -123,4 +123,20 @@ class TelefonoDaoImp implements TelefonoDao{
         return FALSE;
     }
 
+    public function eliminar($id) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("delete from telefono where id = ?");
+
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0)
+                return TRUE;
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al eliminar " . $exc->getMessage();
+        }
+        return FALSE;
+    }
+
 }
