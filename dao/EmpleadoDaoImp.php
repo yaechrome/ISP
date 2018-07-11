@@ -102,6 +102,57 @@ class EmpleadoDaoImp implements EmpleadoDao{
         return FALSE;
     }
 
+
+    public function buscarPorRut($rut) {
+        try {
+            $empleado = null;
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("select * from empleado where rutEmpleado=? and estado='Activo'");
+            $stmt->bindValue(1, $rut);
+            $stmt->execute();
+            $registro = $stmt->fetchAll();
+            foreach ($registro as $value) {
+                $empleado = new Empleado();
+                $empleado->setRut($value["rutEmpleado"]);
+                $empleado->setNombre($value["nombreEmpleado"]);
+                $empleado->setPassword($value["passwordEmpleado"]);
+                $empleado->setCategoria($value["categoria"]);
+                $empleado->setEstado($value["estado"]);
+            }
+
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar empleado " . $exc->getMessage();
+        }
+        return $empleado;
+    }
+
+    public function buscarPorPerfil($categoria) {
+        try {
+            $lista = new ArrayObject();
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("select * from empleado where categoria=? and estado='Activo'");
+            $stmt->bindValue(1, $categoria);
+            $stmt->execute();
+            $registro = $stmt->fetchAll();
+            foreach ($registro as $value) {
+                $empleado = new Empleado();
+                $empleado->setRut($value["rutEmpleado"]);
+                $empleado->setNombre($value["nombreEmpleado"]);
+                $empleado->setPassword($value["passwordEmpleado"]);
+                $empleado->setCategoria($value["categoria"]);
+                $empleado->setEstado($value["estado"]);
+
+                $lista->append($empleado);
+            }
+
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar empleado por perfil " . $exc->getMessage();
+        }
+        return $lista;
+    }
+
     public function darDeBaja($rut) {
         try {
             $pdo = new clasePDO();
