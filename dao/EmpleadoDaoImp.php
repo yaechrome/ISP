@@ -82,13 +82,14 @@ class EmpleadoDaoImp implements EmpleadoDao{
     public function modificar($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update particular set nombreEmpleado=?,"
-                    . " passwordEmpleado=?, categoria=? where rutEmpleado=?");
+            $stmt = $pdo->prepare("update empleado set nombreEmpleado=?,"
+                    . " passwordEmpleado=?, categoria=?, estado=? where rutEmpleado=?");
             
-            $stmt->bindValue(4, $dto->getRut());
+            $stmt->bindValue(5, $dto->getRut());
             $stmt->bindValue(1, $dto->getNombre());
             $stmt->bindValue(2, $dto->getPassword());
             $stmt->bindValue(3, $dto->getCategoria());
+            $stmt->bindValue(4, $dto->getEstado());
 
 
             $stmt->execute();
