@@ -134,7 +134,7 @@ class UsuarioDaoImp implements UsuarioDao{
         try {
             $usuario = null;
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select * from usuario where rut=?");
+            $stmt = $pdo->prepare("select * from usuario where rut=? and estado='Activo'");
             $stmt->bindValue(1, $rut);
             $stmt->execute();
             $registro = $stmt->fetchAll();
@@ -161,7 +161,7 @@ class UsuarioDaoImp implements UsuarioDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select * from usuario where perfil=?");
+            $stmt = $pdo->prepare("select * from usuario where perfil=? and estado='Activo'");
             $stmt->bindValue(1, $perfil);
             $stmt->execute();
             $registro = $stmt->fetchAll();
