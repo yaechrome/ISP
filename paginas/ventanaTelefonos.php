@@ -41,8 +41,13 @@ $listaTelefonos = $telDao->listarPorCodigoParticular($codigo);
                 <div><a href="eliminarTelefono.php?id=<?php echo $value->getId() ?>">Eliminar</a></div>
                 
                 <?php    }?>
+                <form action="agregarTelefono.php" method="POST">
+                    <div><input type="text" name="txtNuevo" value="" required="true" ></div>
+                    <div><input type="submit" value="Agregar" name="btnAgregar" /></div>
+                </form>
                
         </div>
+        
         <br>
          <a href=../login/volver.php>Volver</a> <br>
     </body>
