@@ -3,6 +3,7 @@ include_once '../bd/ClasePDO.php';
 include_once '../dto/Contacto.php';
 include_once 'BaseDao.php';
 include_once 'ContactoDao.php';
+include_once '../dto/Usuario.php';
 
 class ContactoDaoImp implements ContactoDao{
     
@@ -21,7 +22,7 @@ class ContactoDaoImp implements ContactoDao{
                 $contacto->setRut($value["rutContacto"]);
                 $contacto->setNombre($value["nombreContacto"]);               
                 $contacto->setEmail($value["emailContacto"]);
-                $contacto->setTelefono($value["telefonoCotacto"]);
+                $contacto->setTelefono($value["telefonoContacto"]);
                 $contacto->setEmpresa($empresa);
             }
             $pdo=NULL;
@@ -35,7 +36,7 @@ class ContactoDaoImp implements ContactoDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("INSERT INTO contacto(rutContacto, nombreContacto,"
-                    . "emailContacto, telefonoContacto, codigoEmpresa) VALUES(?,?,?,?,?");
+                    . "emailContacto, telefonoContacto, codigoEmpresa) VALUES(?,?,?,?,?)");
 
             $stmt->bindValue(1, $dto->getRut());
             $stmt->bindValue(2, $dto->getNombre());
@@ -68,7 +69,7 @@ class ContactoDaoImp implements ContactoDao{
                 $contacto->setRut($value["rutContacto"]);
                 $contacto->setNombre($value["nombreContacto"]);               
                 $contacto->setEmail($value["emailContacto"]);
-                $contacto->setTelefono($value["telefonoCotacto"]);
+                $contacto->setTelefono($value["telefonoContacto"]);
                 $contacto->setEmpresa($empresa);
 
                 $lista->append($contacto);
@@ -92,14 +93,11 @@ class ContactoDaoImp implements ContactoDao{
             
             $resultado= $stmt->fetchAll();
             foreach ($resultado as $value) {
-                $empresa = new Usuario();
-                $empresaDao = new UsuarioDaoImp();
-                $empresa = $empresaDao->buscarPorClavePrimaria($value["codigoEmpresa"]);
+                $contacto = new Contacto();
                 $contacto->setRut($value["rutContacto"]);
                 $contacto->setNombre($value["nombreContacto"]);               
                 $contacto->setEmail($value["emailContacto"]);
-                $contacto->setTelefono($value["telefonoCotacto"]);
-                $contacto->setEmpresa($empresa);
+                $contacto->setTelefono($value["telefonoContacto"]);
 
                 $lista->append($contacto);
             }
