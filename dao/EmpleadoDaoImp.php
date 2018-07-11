@@ -20,7 +20,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
                 $empleado->setNombre($value["nombreEmpleado"]);
                 $empleado->setPassword($value["passwordEmpleado"]);
                 $empleado->setCategoria($value["categoria"]);
-                $empleado->setEstado($value["estado"]);
+                $empleado->setEstado($value["Estado"]);
             }
 
             $pdo = NULL;
@@ -83,7 +83,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("update empleado set nombreEmpleado=?,"
-                    . " passwordEmpleado=?, categoria=?, estado=? where rutEmpleado=?");
+                    . " passwordEmpleado=?, categoria=?, Estado=? where rutEmpleado=?");
             
             $stmt->bindValue(5, $dto->getRut());
             $stmt->bindValue(1, $dto->getNombre());
@@ -107,7 +107,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
         try {
             $empleado = null;
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select * from empleado where rutEmpleado=? and estado='Activo'");
+            $stmt = $pdo->prepare("select * from empleado where rutEmpleado=? and Estado='Activo'");
             $stmt->bindValue(1, $rut);
             $stmt->execute();
             $registro = $stmt->fetchAll();
@@ -117,7 +117,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
                 $empleado->setNombre($value["nombreEmpleado"]);
                 $empleado->setPassword($value["passwordEmpleado"]);
                 $empleado->setCategoria($value["categoria"]);
-                $empleado->setEstado($value["estado"]);
+                $empleado->setEstado($value["Estado"]);
             }
 
             $pdo = NULL;
@@ -131,7 +131,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select * from empleado where categoria=? and estado='Activo'");
+            $stmt = $pdo->prepare("select * from empleado where categoria=? and Estado='Activo'");
             $stmt->bindValue(1, $categoria);
             $stmt->execute();
             $registro = $stmt->fetchAll();
@@ -141,7 +141,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
                 $empleado->setNombre($value["nombreEmpleado"]);
                 $empleado->setPassword($value["passwordEmpleado"]);
                 $empleado->setCategoria($value["categoria"]);
-                $empleado->setEstado($value["estado"]);
+                $empleado->setEstado($value["Estado"]);
 
                 $lista->append($empleado);
             }
@@ -156,7 +156,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
     public function darDeBaja($rut) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update empleado set estado='Inactivo' where rutEmpleado=?");
+            $stmt = $pdo->prepare("update empleado set Estado='Inactivo' where rutEmpleado=?");
             
             $stmt->bindValue(1, $rut);
 
