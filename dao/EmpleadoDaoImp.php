@@ -105,9 +105,9 @@ class EmpleadoDaoImp implements EmpleadoDao{
     public function darDeBaja($rut) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update particular set estado='Inactivo' where rutEmpleado=?");
+            $stmt = $pdo->prepare("update empleado set estado='Inactivo' where rutEmpleado=?");
             
-            $stmt->bindValue(1, $dto->getRut());
+            $stmt->bindValue(1, $rut);
 
 
             $stmt->execute();
