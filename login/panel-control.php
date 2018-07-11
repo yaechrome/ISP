@@ -33,7 +33,7 @@ $usuario = $_SESSION['usuario'];
             <div class="row mb0 center-align relative full">
                 <div class="center">
                     <div class="text_center">
-                        <h5 class="small title black-text"><?php echo 'Bienvenido ' . $_SESSION['nombre']; ?></h5>
+                        <h5 class="small title black-text"><?php echo 'Bienvenido ' . $usuario->getNombre(); ?></h5>
                     </div>
                     <div class="col s12 m6 offset-m3 l4 offset-l4">
                         <div class="card">

@@ -8,7 +8,6 @@ $daoUsuario = new UsuarioDaoImp();
 $daoEmpleado = new EmpleadoDaoImp();
 
 $usuario = $_SESSION["usuario"];
-var_dump($usuario);
 $nombre = trim($_POST['txtNombre']);
 $estado = trim($_POST['txtEstado']);
 
