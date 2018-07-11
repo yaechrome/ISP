@@ -1,6 +1,5 @@
 <?php
-include_once '../dto/Usuario.php';
-include_once '../dto/Empleado.php';
+include_once '../login/sessionStart.php';
 $is_logged_in = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true;
 if (!$is_logged_in) {
     echo "Esta pagina es solo para usuarios registrados.<br>";
@@ -17,7 +16,6 @@ if ($now > $_SESSION['expire']) {
     exit;
 }
 $usuario = $_SESSION['usuario'];
-var_dump($usuario);
 ?>
 
 <!DOCTYPE html>

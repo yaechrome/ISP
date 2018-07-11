@@ -1,7 +1,7 @@
 <?php
 include_once '../dto/Usuario.php';
 include_once '../dto/TipoAnalisis.php';
-session_start();
+include_once '../login/sessionStart.php';
 
 $usuario = $_SESSION["cliente"];
 ?>

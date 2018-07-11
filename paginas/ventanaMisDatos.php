@@ -2,7 +2,7 @@
 include_once '../dto/Usuario.php';
 include_once '../dao/UsuarioDaoImp.php';
 include_once '../dto/Empleado.php';
-session_start();
+include_once '../login/sessionStart.php';
 $dao = new UsuarioDaoImp();
 $usuario = $_SESSION["usuario"];
 $rut = $usuario->getRut();

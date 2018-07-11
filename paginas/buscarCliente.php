@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include_once '../login/sessionStart.php';
 include_once '../dao/UsuarioDaoImp.php';
 include_once '../dto/Usuario.php';
 

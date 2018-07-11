@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include_once '../login/sessionStart.php';
 unset ($SESSION['username']);
 session_destroy();
 

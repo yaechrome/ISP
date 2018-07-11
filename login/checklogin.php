@@ -1,10 +1,5 @@
 <?php
-session_start();
-?>
-
-<?php
-include_once '../dto/Usuario.php';
-include_once '../dto/Empleado.php';
+include_once '../login/sessionStart.php';
 $host_db = "127.0.0.1";
 $user_db = "root";
 $pass_db = "";

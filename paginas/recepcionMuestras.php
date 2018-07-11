@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once '../login/sessionStart.php';
 include_once '../dto/AnalisisMuestras.php';
 include_once '../dto/ResultadoAnalisis.php';
 
