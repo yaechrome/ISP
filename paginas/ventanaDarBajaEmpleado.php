@@ -3,14 +3,18 @@ include_once('./perfilesEmpleados.php');
 include_once('../dao/EmpleadoDaoImp.php');
 include_once('../dto/Empleado.php');
 
+function post($key) {
+    return isset($_POST[$key]) ? $_POST[$key] : "";
+}
+
 function htmlAlert($msg)
 {
     echo '<script type="text/javascript">alert("' . $msg . '")</script>';
 }
 
-if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
+if (post('accion') == 'Dar de baja') {
     $dao = new EmpleadoDaoImp();
-    $codigo = $_POST['codigo'];
+    $codigo = post('codigo');
     $sePudoDarDeBaja = $dao->darDeBaja($codigo);
     
     $mensaje = $sePudoDarDeBaja
@@ -25,8 +29,8 @@ function personas()
     $dao = new EmpleadoDaoImp();
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $filtro = $_POST['filtro'];
-        $metodo_busqueda = $_POST['Buscar'];
+        $filtro = post('filtro');
+        $metodo_busqueda = post('Buscar');
     
         switch ($metodo_busqueda) {
             case 'RUT':
