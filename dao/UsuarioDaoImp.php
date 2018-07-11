@@ -80,7 +80,7 @@ class UsuarioDaoImp implements UsuarioDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt= $pdo->prepare("select * from usuario");
+            $stmt= $pdo->prepare("select * from usuario where estado='Activo'");
             $stmt->execute();
             
             $resultado= $stmt->fetchAll();
