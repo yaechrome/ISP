@@ -13,6 +13,7 @@ $telefono = trim($_POST["txtTelefono"]);
 $direccion = trim($_POST["txtDireccion"]);
 $contrasena1 = trim($_POST["txtPassword"]);
 $contrasena2 = trim($_POST["txtPassword2"]);
+
 $mensaje = null;
 
 
@@ -44,14 +45,15 @@ $mensaje = null;
                 $telefonoDao = new TelefonoDaoImp();
                 $telefonoDao->crear($telefonoDto);
                 
-                 echo "<script> alert('$mensaje') </script>";
+              
             }else{
                 $mensaje= "Error al intentar registrar usuario";
-                echo "<script> alert('$mensaje') </script>";
+                
             }
         }
     }
-    
 
+    
+echo "<script> alert('$mensaje') </script>";
 
 include_once '../login/Login.html';
