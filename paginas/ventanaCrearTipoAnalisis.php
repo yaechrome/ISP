@@ -24,6 +24,7 @@
         </style>
     </head>
     <body>
+        <h1>Crear Tipo Analisis</h1>
         <form action="agregarTipoAnalisis.php" method="POST" class="container-busquedas">
             <div class="grilla">
                 <div>Nombre</div>

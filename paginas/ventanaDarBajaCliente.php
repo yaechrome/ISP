@@ -104,6 +104,7 @@ $htmlDeTodasLasPersonas = implode('', $htmlsDeTodasLasPersonas);
         </style>
     </head>
     <body>
+        <h1>Dar de baja a Clientes</h1>
         <div class="container-busquedas">
             <form method="POST" class="container-formulario">
                 <div>Rut</div>

@@ -26,6 +26,7 @@ include_once './perfilesEmpleados.php';
         </style>
     </head>
     <body>
+        <h1>Registro de Empleados</h1>
         <form action="registrarEmpleado.php" method="POST">
             <div class="grid-wrapper elemento-formulario">
                 <div>Categoría:</div>

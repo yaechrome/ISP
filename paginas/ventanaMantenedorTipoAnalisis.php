@@ -25,6 +25,7 @@
         </style>
     </head>
     <body>
+        <h1>Mantenedor de Tipo Analisis</h1>
         <form action="mantenedorTipoAnalisis.php" method="POST" class="container-busquedas">
             <div>ID</div>
             <input type="text" name="txtId" value="" />
