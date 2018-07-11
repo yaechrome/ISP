@@ -62,7 +62,7 @@ class UsuarioDaoImp implements UsuarioDao{
     public function darDeBaja($codigoUsuario) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update usuario set estado=Inactivo where codigo=?");
+            $stmt = $pdo->prepare("update usuario set estado='Inactivo' where codigo=?");
 
             $stmt->bindValue(1, $codigoUsuario);
 
