@@ -3,6 +3,7 @@ include_once '../dto/Usuario.php';
 include_once '../dao/UsuarioDaoImp.php';
 include_once '../dto/Empleado.php';
 include_once '../login/sessionStart.php';
+include_once './perfilesEmpleados.php';
 $dao = new UsuarioDaoImp();
 $usuario = $_SESSION["usuario"];
 $rut = $usuario->getRut();
@@ -13,8 +14,9 @@ if ($_SESSION['tipo'] == 'usuario') {
     $perfil = $usuario->getPerfil();
     $direccion = $usuario->getDireccion();
     $email = $usuario->getEmail();
-}else{
-    $perfil = $usuario->getCategoria();
+} else {
+    $categoria = $usuario->getCategoria();
+    $perfil = nombreCompletoCategoria($categoria);
     $direccion = "";
     $email = "";
 }
@@ -36,7 +38,7 @@ if ($_SESSION['tipo'] == 'usuario') {
                 grid-template-columns: 100%;
                 justify-items: center;
             }
-            
+
             .elemento-formulario {
                 min-width: 300px;
             }
@@ -47,24 +49,23 @@ if ($_SESSION['tipo'] == 'usuario') {
     </head>
     <body>
         <h1>Mis Datos</h1>
-        <form action="misDatos.php" method="POST">
-            <div class="grid-wrapper elemento-formulario">
-                <div>Rut:</div>
-                <div><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></div>
-                <div>Nombre:</div>
-                <div><input type="text" name="txtNombre" value="<?= $nombre ?>" disabled/></div>
-                <div>Perfil:</div>
-                <div><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></div>
-                <div>Estado:</div>
-                <div><input type="text" name="txtEstado" value="<?= $estado ?>" disabled/></div>
-                <?php if ($_SESSION['tipo'] == 'usuario') { ?>
+        <div class="grid-wrapper elemento-formulario">
+            <div>Rut:</div>
+            <div><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></div>
+            <div>Nombre:</div>
+            <div><input type="text" name="txtNombre" value="<?= $nombre ?>" disabled/></div>
+            <div>Perfil:</div>
+            <div><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></div>
+            <div>Estado:</div>
+            <div><input type="text" name="txtEstado" value="<?= $estado ?>" disabled/></div>
+            <?php if ($_SESSION['tipo'] == 'usuario') { ?>
                 <div>Direccion:</div>
                 <div><input type="text" name="txtDireccion" value="<?= $direccion ?>" disabled/></div>
                 <div>Email:</div>
                 <div><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></div>
-                 <?php } ?>
-            </div>
-        </form>
+            <?php } ?>
+        </div>
+        <a href="ventanaEditarMisDatos.php">Editar</a>
         <a href=../login/volver.php>Volver</a> <br>
     </body>
 </html>
