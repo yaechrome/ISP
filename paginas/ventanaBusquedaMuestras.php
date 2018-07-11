@@ -3,13 +3,29 @@ include_once '../dto/Usuario.php';
 include_once '../dao/UsuarioDaoImp.php';
 include_once '../dao/AnalisisMuestraDaoImp.php';
 include_once '../dto/AnalisisMuestras.php';
+include_once '../dto/ResultadoAnalisis.php';
+include_once '../dao/ResultadoAnalisisDaoImp.php';
+include_once '../dto/Empleado.php';
 include_once '../login/sessionStart.php';
 
 
 $usuario = $_SESSION["usuario"];
-$codigo = $usuario->getCodigo();	
+$_SESSION["busquedaMuestas"] = null;
 $dao = new AnalisisMuestraDaoImp();
-$_SESSION["busquedaMuestasCliente"] = $dao->buscarPorCodigoCliente($codigo)
+if($_SESSION['tipo'] == 'usuario'){
+    $codigo = $usuario->getCodigo();
+    $_SESSION["busquedaMuestas"] = $dao->buscarPorCodigoCliente($codigo);
+}else{
+    $codigo = $usuario->getRut();
+    if($usuario->getCategoria()== 'R'){
+        $_SESSION["busquedaMuestas"] = $dao->buscarPorRutReceptor($codigo);
+    }
+    if ($usuario->getCategoria()== 'T') {
+        $daoResultado = new ResultadoAnalisisDaoImp();
+       
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>

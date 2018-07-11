@@ -7,4 +7,6 @@ interface ResultadoAnalisisDao extends BaseDao{
     public function listarPorIdAnalisisMuestra($id);
     
     public function reporteAnalisisXTecnico();
+    
+    public function buscarPorTecnico($rut);
 }

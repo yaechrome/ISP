@@ -152,4 +152,8 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         return $lista;
     }
 
+    public function buscarPorTecnico($rut) {
+        
+    }
+
 }
