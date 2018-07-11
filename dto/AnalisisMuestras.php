@@ -13,16 +13,7 @@ class AnalisisMuestras {
     function __construct() {
         
     }
-    
-    function getEstado() {
-        return $this->estado;
-    }
-
-    function setEstado($estado) {
-        $this->estado = $estado;
-    }
-
-        function getId() {
+    function getId() {
         return $this->id;
     }
 
@@ -46,6 +37,10 @@ class AnalisisMuestras {
         return $this->empleado;
     }
 
+    function getEstado() {
+        return $this->estado;
+    }
+
     function setId($id) {
         $this->id = $id;
     }
@@ -62,13 +57,20 @@ class AnalisisMuestras {
         $this->cantidadMuestra = $cantidadMuestra;
     }
 
-    function setParticular($usuario) {
+    function setUsuario($usuario) {
         $this->usuario = $usuario;
     }
 
     function setEmpleado($empleado) {
         $this->empleado = $empleado;
     }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+
+    
 
 
 }

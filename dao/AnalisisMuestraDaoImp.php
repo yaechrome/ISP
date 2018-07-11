@@ -49,26 +49,32 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
     }
 
     public function crear($dto) {
+        $id = 0;
+        $agregado = false;
         try {
             
             $pdo = new clasePDO();
-            $stmt = null;
-            $stmt = $pdo->prepare("INSERT INTO analisismuestras(fechaRecepcion, temperaturaMuestra,"
-                        . "cantidadMuestra,codigoCliente,rutEmpleadoRecibe) VALUES(now(),?,?,?,?");
-            
-            $stmt->bindValue(3, $dto->getCliente()->getCodigo());
-            $stmt->bindValue(1, $dto->getTemperaturaMuestra());
+            $stmt = $pdo->prepare("INSERT INTO AnalisisMuestras (fechaRecepcion, temperaturaMuestra,"
+                        . "cantidadMuestra,codigoCliente,rutEmpleadoRecibe) VALUES(now(),?,?,?,?)");
+
+            $stmt->bindValue(1, $dto->getTemperaturaRecepcion());
             $stmt->bindValue(2, $dto->getCantidadMuestra());
+            $stmt->bindValue(3, $dto->getUsuario()->getCodigo());
             $stmt->bindValue(4, $dto->getEmpleado()->getRut());
             
             $stmt->execute();
+            $id = $pdo->lastInsertId();
             if ($stmt->rowCount() > 0)
-                return TRUE;
+                $agregado = true;
             $pdo = NULL;
         } catch (Exception $exc) {
-            echo "Error dao al agregar " . $exc->getMessage();
+            echo "Error dao al agregar muestra" . $exc->getMessage();
         }
-        return FALSE;
+        if($agregado){
+            return $id;
+        }else {
+            return 0;
+        }
     }
 
     public function listar() {

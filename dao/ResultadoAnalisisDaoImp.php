@@ -13,17 +13,18 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     public function crear($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("INSERT INTO resultadoanalisis(idTipoAnalisis, idAnalisisMuestra) VALUES(?,?");
+            $stmt = $pdo->prepare("INSERT INTO resultadoanalisis(idTipoAnalisis, idAnalisisMuestras, rutEmpleadoAnalista) VALUES(?,?,?)");
 
             $stmt->bindValue(1, $dto->getTipoAnalisis()->getId());
             $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
+            $stmt->bindValue(3, $dto->getEmpleado()->getRut());
             
             $stmt->execute();
             if ($stmt->rowCount() > 0)
                 return TRUE;
             $pdo = NULL;
         } catch (Exception $exc) {
-            echo "Error dao al agregar " . $exc->getMessage();
+            echo "Error dao al agregar Resultado Analisis" . $exc->getMessage();
         }
         return FALSE;
     }

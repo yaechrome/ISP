@@ -95,8 +95,8 @@ $usuario = $_SESSION["cliente"];
             <div class="elemento-formulario delgado container-seccion">
                 <div class="elemento-seccion">Fecha de recepción</div>
                 <input type="date" name="txtFecha" value="" class="elemento-seccion"/>
-                <input type="text" name="txtTemperatura" value="" placeholder="Temperatura muestra" class="elemento-seccion"/>
-                <input type="text" name="txtCantidad" value="" placeholder="Cantidad de Muestra" class="elemento-seccion"/>
+                <input type="number" name="txtTemperatura" value="" placeholder="Temperatura muestra" class="elemento-seccion"/>
+                <input type="number" name="txtCantidad" value="" placeholder="Cantidad de Muestra" class="elemento-seccion"/>
             </div>
             <div class="elemento-formulario ancho container-seccion">
                 <div class="elemento-seccion">Tipo de análisis a realizar</div>
