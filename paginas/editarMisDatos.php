@@ -23,7 +23,6 @@ if ($_SESSION['tipo'] == 'usuario') {
     $dto->setEmail($email);
     if ($daoUsuario->modificar($dto)) {
         echo "<script> alert('Usuario modificado con exito') </script>";
-        var_dump($dto);
         $_SESSION["usuario"] = $dto;
     } else {
         echo "<script> alert('Error al modificar Usuario') </script>";
