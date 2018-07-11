@@ -41,12 +41,12 @@ if ($now > $_SESSION['expire']) {
                                     <div class="mb20"><h3 class="big header black-text">MENU</h3></div>   
                                     <ul>
                                         <?php if ($_SESSION['tipo'] == 'usuario') { ?>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaRecepcionMuestras.php" >Mis Datos</a></p>
+                                        <p><a class="btn purple lighten-1" href="../paginas/ventanaMisDatos.php" >Mis Datos</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Mis Análisis</a></p>
                                         <?php } else { ?>
                                             
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaRecepcionMuestras.php" >Mis Datos</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaMisDatos.php" >Mis Datos</a></p>
                                             <br>
                                             <?php if($_SESSION['usuario']->getCategoria() == 'R') {?>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Muestras Recibidas</a></p>

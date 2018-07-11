@@ -63,6 +63,7 @@ if ($result->num_rows > 0) {
         $empleado->setNombre($row['nombreEmpleado']);
         $empleado->setPassword($row['passwordEmpleado']);
         $empleado->setCategoria($row['categoria']);
+        $empleado->setEstado($row['Estado']);
 
         $_SESSION['tipo'] = 'empleado';
         $_SESSION['usuario'] = $empleado;
