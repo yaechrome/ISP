@@ -64,7 +64,9 @@ $usuario = $_SESSION['usuario'];
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaRegistrarEmpleado.php" >Registrar empleado</a></p>
                                             <br>
-                                            <p><a class="btn purple lighten-1" href="" >Dar baja a usuario</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaDarBajaCliente.php" >Baja a cliente</a></p>
+                                            <br>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaDarBajaEmpleado.php" >Baja a empleado</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="" >Reportes</a></p>
                                             <?php }?>
