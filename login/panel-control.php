@@ -1,5 +1,6 @@
 <?php
 include_once '../dto/Usuario.php';
+include_once '../dto/Empleado.php';
 $is_logged_in = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true;
 if (!$is_logged_in) {
     echo "Esta pagina es solo para usuarios registrados.<br>";
@@ -15,6 +16,8 @@ if ($now > $_SESSION['expire']) {
     echo "Su sesion a terminado, <a href='login.html'>Necesita Hacer Login</a>";
     exit;
 }
+$usuario = $_SESSION['usuario'];
+var_dump($usuario);
 ?>
 
 <!DOCTYPE html>
@@ -48,17 +51,17 @@ if ($now > $_SESSION['expire']) {
                                             
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaMisDatos.php" >Mis Datos</a></p>
                                             <br>
-                                            <?php if($_SESSION['usuario']->getCategoria() == 'R') {?>
+                                            <?php if($usuario->getCategoria() == 'R') {?>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Muestras Recibidas</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaBuscarCliente.php" >Ingresar Muestras</a></p>
                                             <br>
                                             <?php }
-                                            if ($_SESSION['usuario']->getCategoria() == 'T') { ?>
+                                            if ($usuario->getCategoria() == 'T') { ?>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaListadoMuestras.php" >Muestras en Proceso</a></p>
                                             <br>
                                             <?php } 
-                                            if ($_SESSION['usuario']->getCategoria() == 'A') { ?>
+                                            if ($usuario->getCategoria() == 'A') { ?>
                                             <p><a class="btn purple lighten-1" href="" >Mantenedor Tipo de análisis</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="" >Registrar empleado</a></p>
