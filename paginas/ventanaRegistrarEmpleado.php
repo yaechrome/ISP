@@ -33,11 +33,13 @@ include_once './perfilesEmpleados.php';
                         <?php selectPerfilesEmpleados($categoria); ?>
                     </select></div>
                 <div>Rut:</div>
-                <div><input type="text" name="txtRut" value="" /></div>
+                <div><input type="text" name="txtRut" value="" required="true"/></div>
                 <div>Nombre:</div>
-                <div><input type="text" name="txtNombre" value="" /></div>
+                <div><input type="text" name="txtNombre" value="" required="true"/></div>
                 <div>Password</div>
-                <div><input type="password" name="txtPassword" value="" /></div>
+                <div><input type="password" name="txtPassword" value="" required="true" /></div>
+                <div>Repetir Password</div>
+                <div><input type="password" name="txtPassword2" value="" required="true" /></div>
             </div>
             <input type="submit" value="Guardar" name="btnGuardar" />
             <a href=../login/volver.php>Volver</a> <br>

@@ -34,7 +34,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("INSERT INTO empleado ( rutEmpleado,"
-                    . "nombreEmpleado, passwordEmpleado, categoria) VALUES(?,?,?,?");
+                    . "nombreEmpleado, passwordEmpleado, categoria) VALUES(?,?,?,?)");
 
             $stmt->bindValue(1, $dto->getRut());
             $stmt->bindValue(2, $dto->getNombre());
@@ -55,7 +55,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt= $pdo->prepare("select * from empleado where estado='Activo'");
+            $stmt= $pdo->prepare("select * from empleado where Estado='Activo'");
             $stmt->execute();
             
             $resultado= $stmt->fetchAll();
@@ -65,7 +65,7 @@ class EmpleadoDaoImp implements EmpleadoDao{
                 $empleado->setNombre($value["nombreEmpleado"]);
                 $empleado->setPassword($value["passwordEmpleado"]);
                 $empleado->setCategoria($value["categoria"]);
-                $empleado->setEstado($value["estado"]);
+                $empleado->setEstado($value["Estado"]);
    
 
                 $lista->append($empleado);
@@ -167,6 +167,23 @@ class EmpleadoDaoImp implements EmpleadoDao{
             $pdo = NULL;
         } catch (Exception $exc) {
             echo "Error dao al modificar Empleado" . $exc->getMessage();
+        }
+        return FALSE;
+    }
+    
+    public function existeRegistro($key) {
+        try {
+            $pdo = new clasePDO();
+            $stmt= $pdo->prepare("SELECT rutEmpleado FROM empleado WHERE rutEmpleado=?");
+            $stmt->bindParam(1, $key);
+            $stmt->execute();
+            
+            if(count($stmt->fetchAll())>0){
+                return TRUE;
+            }
+            $pdo=NULL;            
+        } catch (Exception $exc) {
+            echo "Error dao al validar rut ".$exc->getMessage();
         }
         return FALSE;
     }
