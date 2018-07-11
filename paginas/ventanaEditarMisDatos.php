@@ -59,10 +59,8 @@ if ($_SESSION['tipo'] == 'usuario') {
                 <div>Perfil:</div>
                 <?php if ($_SESSION['tipo'] == 'empleado' && $usuario->getCategoria() == 'A') { ?>
                     <div><select name="cmbPerfil">
-                            <?php
-                            selectPerfilesEmpleados();
-                            ?>
-                        </select></div>
+                        <?php selectPerfilesEmpleados($categoria); ?>
+                    </select></div>
                 <?php } else { ?>
                     <div><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></div>
                 <?php } ?>

@@ -12,11 +12,11 @@ function nombreCompletoCategoria($categoria) {
     return $perfilesEmpleados[$categoria];
 }
 
-function selectPerfilesEmpleados() {
+function selectPerfilesEmpleados($categoria) {
     global $perfilesEmpleados;
-    var_dump($perfilesEmpleados);
     
     foreach( $perfilesEmpleados as $key => $value ){
-        echo '<option value="'.$key.'">'.$value.'</option>';
+        $selected = $key == $categoria ? 'selected' : '';
+        echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
     }
 }
