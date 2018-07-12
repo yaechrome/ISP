@@ -2,6 +2,7 @@
 include_once('./perfilesClientes.php');
 include_once('../dao/UsuarioDaoImp.php');
 include_once('../dto/Usuario.php');
+include_once '../login/sessionStart.php';
 
 function post($key) {
     return isset($_POST[$key]) ? $_POST[$key] : "";

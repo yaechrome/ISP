@@ -1,5 +1,5 @@
 <?php
-// put your code here
+include_once '../login/sessionStart.php';
 ?>
 
 <!DOCTYPE html>

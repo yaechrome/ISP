@@ -6,6 +6,7 @@ include_once '../dto/AnalisisMuestras.php';
 include_once '../dto/ResultadoAnalisis.php';
 include_once '../dao/ResultadoAnalisisDaoImp.php';
 include_once '../dao/AnalisisMuestraDaoImp.php';
+include_once '../login/sessionStart.php';
 
 $fechaRecepcion = trim($_POST['txtFecha']);
 $temperaturaRecepcion = trim($_POST['txtTemperatura']) + 0.0;

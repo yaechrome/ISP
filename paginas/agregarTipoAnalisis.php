@@ -1,5 +1,6 @@
 <?php
 include_once '../dao/TipoAnalisisDaoImp.php';
+include_once '../login/sessionStart.php';
 
 $nombre = $_POST["txtNombre"];
 $dao = new TipoAnalisisDaoImp();

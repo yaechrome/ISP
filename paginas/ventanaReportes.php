@@ -1,5 +1,5 @@
 <?php
-
+include_once '../login/sessionStart.php';
 $htmlDeUnReporte = function ($reporte) {
     $htmlDeUnDato = function ($dato) {
         return "<div>$dato</div>";
