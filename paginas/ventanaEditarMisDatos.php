@@ -23,55 +23,73 @@ if ($_SESSION['tipo'] == 'usuario') {
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="../static/css/postulacion.css" type="text/css"/>
         <meta charset="UTF-8">
         <title>Mis Datos</title>
-        <style>
-            .grid-wrapper {
-                display: grid;
-                grid-template-columns: 25% 25% 25% 25%;
-                grid-gap: 10px;
-            }
-            .container-formulario {
-                display: grid;
-                grid-template-columns: 100%;
-                justify-items: center;
-            }
-
-            .elemento-formulario {
-                min-width: 300px;
-            }
-        </style>
     </head>
 
     <body>
-        <h1>Mis Datos</h1>
-        <form action="editarMisDatos.php" method="POST">
-            <div class="grid-wrapper elemento-formulario">
-                <div>Rut:</div>
-                <div><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></div>
-                <div>Nombre:</div>
-                <div><input type="text" name="txtNombre" value="<?= $nombre ?>" /></div>
-                <div>Perfil:</div>
-                <?php if ($_SESSION['tipo'] == 'empleado' && $usuario->getCategoria() == 'A') { ?>
-                    <div><select name="cmbPerfil">
-                        <?php selectPerfilesEmpleados($categoria); ?>
-                    </select></div>
-                <?php } else { ?>
-                    <div><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></div>
-                <?php } ?>
-                <div>Estado:</div>
-                <div><input type="text" name="txtEstado" value="<?= $estado ?>" /></div>
-                <?php if ($_SESSION['tipo'] == 'usuario') { ?>
-                    <div>Direccion:</div>
-                    <div><input type="text" name="txtDireccion" value="<?= $direccion ?>" /></div>
-                    <div>Email:</div>
-                    <div><input type="text" name="txtEmail" value="<?= $email ?>" /></div>
-                <?php } ?>
-                <div>Password:</div>
-                <div><input type="password" name="txtPassword" value="<?= $password ?>" /></div>
-            </div>
-            <input type="submit" value="Guardar" name="btnGuardar" />
-        </form>
-        <a href=../login/volver.php>Volver</a> <br>
+        <main role="main">
+            <section class="container">
+                <div class="row mb0 center-align relative full">
+                    <div class="center">
+                        <div class="col s12 m6 offset-m3 l4 offset-l4">
+                            <div class="card">
+                                <div class="card-panel pad0">
+                                    <div class="card-content pad24">
+                                        <div class="mb20"><h3 class="medium title">MIS DATOS</h3></div>  
+                                        <form action="editarMisDatos.php" method="POST">
+                                            <table class="responsive-table striped" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Rut:</td>
+                                                        <td><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></td>
+                                                    </tr>
+                                                    <tr>                                            
+                                                        <td>Nombre:</td>
+                                                        <td><input type="text" name="txtNombre" value="<?= $nombre ?>" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Perfil:</td>
+                                                        <?php if ($_SESSION['tipo'] == 'empleado' && $usuario->getCategoria() == 'A') { ?>
+                                                            <td><select name="cmbPerfil">
+                                                                    <?php selectPerfilesEmpleados($categoria); ?>
+                                                                </select></td>
+                                                        <?php } else { ?>
+                                                            <td><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></td>
+                                                        <?php } ?>                                                   </tr>
+                                                    <tr>
+                                                        <td>Estado:</td>
+                                                        <td><input type="text" name="txtEstado" value="<?= $estado ?>" /></td>
+                                                    </tr> 
+                                                    <?php if ($_SESSION['tipo'] == 'usuario') { ?>
+                                                        <tr>
+                                                            <td>Direccion:</td>
+                                                            <td><input type="text" name="txtDireccion" value="<?= $direccion ?>" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email:</td>
+                                                            <td><input type="text" name="txtEmail" value="<?= $email ?>" /></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                    <tr>
+                                                        <td>Password:</td>
+                                                        <td><input type="password" name="txtPassword" value="<?= $password ?>" /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                            <input type="submit" value="Guardar" name="btnGuardar" />
+                                        </form>
+                                        <br>
+                                        <a href=../login/volver.php>Volver</a> <br>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </body>
 </html>
