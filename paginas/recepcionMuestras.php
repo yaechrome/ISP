@@ -37,7 +37,7 @@ if ($idMuestra == 0) {
         $dto = new ResultadoAnalisis();
         $dto->setTipoAnalisis($tipo);
         $dto->setAnalisisMuestra($muestra);
-        $dto->setEmpleado($empleado);
+        $dto->setEmpleado(NULL);
         if($daoResultado->crear($dto)){
             $mensaje = "Se creó correctamente la recepcion de muestras";
         }else{

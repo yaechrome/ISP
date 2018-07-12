@@ -47,7 +47,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
 
             $stmt->bindValue(1, $dto->getTipoAnalisis()->getId());
             $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
-            $stmt->bindValue(3, $dto->getEmpleado()->getRut());
+            $stmt->bindValue(3, $dto->getEmpleado());
             
             $stmt->execute();
             if ($stmt->rowCount() > 0)
