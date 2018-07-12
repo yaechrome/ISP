@@ -1,6 +1,9 @@
 # PHP
 .php_cs.cache
 
+# PhpStorm
+.idea
+
 # Parts of this file were copied from https://github.com/github/gitignore
 ## NetBeans
 nbproject/private/
