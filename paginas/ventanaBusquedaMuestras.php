@@ -24,6 +24,7 @@ if (isset($_GET['firstLoad'])) {
         }
         if ($usuario->getCategoria() == 'T') {
             $daoResultado = new ResultadoAnalisisDaoImp();
+            $_SESSION["busquedaMuestas"] = $daoResultado->buscarAnalisisPorTecnico($codigo);
         }
     }
 }

@@ -56,6 +56,8 @@ $usuario = $_SESSION['usuario'];
                                             <br>
                                             <?php }
                                             if ($usuario->getCategoria() == 'T') { ?>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Muestras revisadas</a></p>
+                                            <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaListadoMuestras.php" >Muestras en Proceso</a></p>
                                             <br>
                                             <?php } 
