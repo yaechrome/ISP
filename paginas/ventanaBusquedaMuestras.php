@@ -57,7 +57,7 @@ if (isset($_GET['firstLoad'])) {
             <div class="elemento-formulario ancho">
                 <input type="number" name="txtCodigoMuestra" value="" placeholder="Código muestra" required/>
                 <input type="submit" value="Buscar" name="btnBuscar" />
-                <input type="button" value="Recargar" name="btnRecargar" onclick="window.location.href = 'ventanaBusquedaMuestras.php?firstLoad=true'" />
+                <input type="button" value="Listar Todos" name="btnRecargar" onclick="window.location.href = 'ventanaBusquedaMuestras.php?firstLoad=true'" />
             </div>
             <br>
             <br>
