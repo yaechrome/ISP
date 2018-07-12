@@ -32,6 +32,7 @@ $_SESSION["listaDesplegar"] = $lista;
             .container-formulario {
                 display: flex;
                 flex-wrap: wrap;
+                justify-content:center;
             }
             .elemento-formulario {
                 min-width: 300px;
@@ -70,7 +71,10 @@ $_SESSION["listaDesplegar"] = $lista;
 
                                         </div>
                                         <input type="hidden" name="txtId" value="<?= $id ?>" />
-                                        <input type="submit" value="Guardar Análisis" name="btnGuardar" class="elemento-formulario"/>
+                                        <div class="container-formulario">
+                                            <input type="submit" value="Guardar Análisis" name="btnGuardar" class="elemento-formulario"/>
+                                        </div>
+                                        
                                     </form>
                                     <a href=../login/volver.php>Volver</a> <br>
                                 </div>
