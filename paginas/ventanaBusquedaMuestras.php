@@ -75,7 +75,7 @@ if (isset($_GET['firstLoad'])) {
                         <div><?php echo $value->getEstado() ?></div>
                         <?php
                     }
-                } else {
+                } elseif(count($data) == 1) {
                     if (isset($data)) {
                         ?>
                         <div><a href="ventanaResultadoAnalisis.php?id=<?php echo $data->getId() ?>"><?php echo $data->getId() ?></a></div>
