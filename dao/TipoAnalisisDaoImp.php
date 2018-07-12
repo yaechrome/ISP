@@ -7,6 +7,7 @@ include_once 'TipoAnalisisDao.php';
 class TipoAnalisisDaoImp implements TipoAnalisisDao{
     
     public function buscarPorClavePrimaria($id) {
+        $tipoAnalisis = NULL;
         try {
             $tipoAnalisis = new TipoAnalisis();
             $pdo = new clasePDO();

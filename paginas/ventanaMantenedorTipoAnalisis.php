@@ -1,6 +1,16 @@
 <?php
+include_once '../dao/TipoAnalisisDaoImp.php';
+include_once '../login/sessionStart.php';
 
+$cantidad = 0;
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $dao = new TipoAnalisisDaoImp();
+    $lista = $dao->listar();
+    $_SESSION["listaDesplegar"] = $lista;
+} else {
+    $lista = $_SESSION["listaDesplegar"];
 
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +38,11 @@
         <h1>Mantenedor de Tipo Analisis</h1>
         <form action="mantenedorTipoAnalisis.php" method="POST" class="container-busquedas">
             <div>ID</div>
-            <input type="text" name="txtId" value="" />
+            <input type="number" name="txtId" value="" />
             <input type="submit" value="Buscar" name="btnBuscar" />
+        </form>
+        <form method="GET" class="container-busquedas">
+            <input type="submit" value="Listar Todos" name="btnListarTodos" />
         </form>
         <br>
         <div class="grilla">
@@ -37,14 +50,13 @@
             <div class="header">Nombre</div>
             <div class="header"></div>
             <?php
-                    for ($x = 0; $x <= 10; $x++) {
-                        ?>
-                            <div>123</div>
-                            <div>456</div>
-                            <div><input type="button" value="Eliminar" name="btnEliminar" /></div>
-                        <?php
-                    }
+            include_once '../dto/TipoAnalisis.php';
+            foreach ($lista as $dto) {
                 ?>
+                <div><?php echo $dto->getId(); ?></div>
+                <div><?php echo $dto->getNombre(); ?></div>
+                <div><input type="button" value="Eliminar" name="btnEliminar" /></div>
+            <?php } ?>
         </div>
         <a href="ventanaCrearTipoAnalisis.php">Crear</a>
         <a href=../login/volver.php>Volver</a> <br>
