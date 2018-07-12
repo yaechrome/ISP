@@ -70,7 +70,7 @@ $usuario = $_SESSION['usuario'];
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaDarBajaEmpleado.php" >Baja a empleado</a></p>
                                             <br>
-                                            <p><a class="btn purple lighten-1" href="" >Reportes</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaReportes.php" >Reportes</a></p>
                                             <?php }?>
                                             
                                         <?php } ?>
