@@ -9,11 +9,36 @@ include_once '../dao/AnalisisMuestraDaoImp.php';
 include_once '../dao/EmpleadoDaoImp.php';
 include_once 'BaseDao.php';
 include_once 'ResultadoAnalisisDao.php';
+include_once '../dto/AnalisisMuestras.php';
+include_once '../dto/AnalisisXTecnico.php';
 
 class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     
     public function buscarPorClavePrimaria($id) {
-       //se reemplaza por listarPorIdAnalisisMuestra
+       $analisisMuestra = NULL;
+        try {
+            $pdo= new clasePDO();
+            $stmt = $pdo->prepare("select analisismuestras.idAnalisisMuestras as id, analisismuestras.estado,"
+                    . " resultadoanalisis.rutEmpleadoAnalista from resultadoanalisis join analisismuestras "
+                    . "on(resultadoanalisis.idAnalisisMuestras=analisismuestras.idAnalisisMuestras) "
+                    . "where analisismuestras.idAnalisisMuestras=?");
+            $stmt->bindParam(1, $id);
+            $stmt->execute();
+            $resultado = $stmt->fetchAll();
+            foreach ($resultado as $value) {
+                $analisisMuestra =new AnalisisXTecnico();
+                
+                             
+                $analisisMuestra->setId($value["id"]);
+                $analisisMuestra->setEstado($value["estado"]);
+                $analisisMuestra->setTecnico($value["rutEmpleadoAnalista"]);
+                
+            }
+            $pdo=NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al buscar Analisis de muestra por clave primaria ".$exc->getMessage();
+        }
+        return $analisisMuestra;
     }
 
     public function crear($dto) {
@@ -163,13 +188,20 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select Distinct idAnalisisMuestras from resultadoanalisis where rutEmpleadoAnalista = ?");
+            $stmt = $pdo->prepare("select Distinct resultadoanalisis.idAnalisisMuestras as id, analisismuestras.estado, "
+                    . "resultadoanalisis.rutEmpleadoAnalista from resultadoanalisis join analisismuestras "
+                    . "on(resultadoanalisis.idAnalisisMuestras=analisismuestras.idAnalisisMuestras) "
+                    . "where rutEmpleadoAnalista = ?");
+
             $stmt->bindValue(1, $rut);
             $stmt->execute();
             $registro = $stmt->fetchAll();
             foreach ($registro as $value) {
-
-                $lista->append($value["idAnalisisMuestras"]);
+                $analisis = new AnalisisXTecnico();
+                $analisis->setId($value["id"]);
+                $analisis->setEstado($value["estado"]);
+                
+                $lista->append($analisis);
             }
 
             $pdo = NULL;
