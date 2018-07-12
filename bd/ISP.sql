@@ -129,7 +129,8 @@ CREATE TABLE `AnalisisMuestras` (
   CONSTRAINT `EmpleadoAnalisis` FOREIGN KEY (`rutEmpleadoRecibe`) REFERENCES `Empleado` (`rutEmpleado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+insert into `analisismuestras` (`idAnalisisMuestras`,`fechaRecepcion`,`temperaturaMuestra`,`cantidadMuestra`,`codigoCliente`,`rutEmpleadoRecibe`,`estado`) values (1,'2018-01-01','22.0',3,1,'2-3','Terminado');
+insert into `analisismuestras` (`idAnalisisMuestras`,`fechaRecepcion`,`temperaturaMuestra`,`cantidadMuestra`,`codigoCliente`,`rutEmpleadoRecibe`,`estado`) values (2,'2018-03-03','20.0',2,1,'2-3','En Proceso');
 
 # Volcado de tabla Contacto
 # ------------------------------------------------------------
@@ -177,6 +178,11 @@ CREATE TABLE `ResultadoAnalisis` (
   CONSTRAINT `TipoResultado` FOREIGN KEY (`idTipoAnalisis`) REFERENCES `TipoAnalisis` (`idTipoAnalisis`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
+
+insert into `resultadoanalisis` (`idTipoAnalisis`,`idAnalisisMuestras`,`fechaRegistro`,`PPM`,`rutEmpleadoAnalista`) values (1,1,'2018-01-02',18,'4-5');
+insert into `resultadoanalisis` (`idTipoAnalisis`,`idAnalisisMuestras`,`fechaRegistro`,`PPM`,`rutEmpleadoAnalista`) values (2,1,'2018-01-02',17,'4-5');
 
 
 # Volcado de tabla Telefono
