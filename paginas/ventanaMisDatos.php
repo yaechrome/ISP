@@ -92,9 +92,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
                                             <?php } ?>
                                             </tbody>
                                         </table>
-                                        <br>
                                     </div>
-                                    <br>
                                     <?php if ($_SESSION['tipo'] == 'usuario') { ?>
                                         <form method="POST">
                                             <input type="submit" name="accion" value="Dar de baja">
@@ -103,7 +101,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
                                     <?php } ?>
                                     <a href="ventanaEditarMisDatos.php">Editar</a>
                                     <a href=../login/volver.php>Volver</a> <br>
-
+                                    <br>
                                 </div>
                             </div>
                         </div>   

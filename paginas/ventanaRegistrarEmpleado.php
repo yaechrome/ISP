@@ -20,13 +20,12 @@ include_once './perfilesEmpleados.php';
                                     <div class="card-content pad24">
                                         <div class="mb20"><h3 class="medium title">Registro de Empleados</h3></div> 
                                         <form action="registrarEmpleado.php" method="POST">
-                                            <table>
-                                                <tr>
-                                                    <td>Categoría:</td>
-                                                    <td><select name="cmbCategoria">
-                                                            <?php selectPerfilesEmpleados($categoria); ?>
-                                                        </select></td>
-                                                </tr>
+                                            <div>Categoría:</div>
+                                            <div><select name="cmbCategoria">
+                                                    <?php selectPerfilesEmpleados($categoria); ?>
+                                                </select></div>
+                                            <br>
+                                            <table class="responsive-table striped" border="0">
                                                 <tr>
                                                     <td>Rut:</td>
                                                     <td><input type="text" name="txtRut" value="" required="true"/></td>
