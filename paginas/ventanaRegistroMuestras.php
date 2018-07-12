@@ -55,7 +55,7 @@ $_SESSION["listaDesplegar"] = $lista;
                 foreach ($lista as $dto) {
                     ?>
                     <div><?php echo $dto->getTipoAnalisis()->getNombre(); ?></div>
-                    <div><input type="number" name="<?= $dto->getTipoAnalisis()->getId() ?>" value="" /></div>
+                    <div><input type="number" name="<?= $dto->getTipoAnalisis()->getId() ?>" value="" required/></div>
                 <?php } ?>
 
             </div>
