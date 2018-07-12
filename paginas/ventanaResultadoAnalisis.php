@@ -151,6 +151,7 @@ and open the template in the editor.
                         <div class="card">
                             <div class="card-panel pad0">
                                 <div class="card-content pad24">
+                                                                            <div class="mb20"><h3 class="medium title">Resultado de Muestras</h3></div>  
                                     <form action="resultadoAnalisis.php" method="POST" class="container-formulario">
                                         <canvas id="myChart" width="600" height="500" class="elemento-formulario"></canvas>
                                         <div class="grid-wrapper elemento-formulario">
