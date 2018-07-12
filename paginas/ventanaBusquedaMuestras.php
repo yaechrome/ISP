@@ -63,7 +63,7 @@ if (isset($_GET['firstLoad'])) {
                                                         <?php
                                                         $data = $_SESSION["busquedaMuestas"];
 
-                                                        if (count($data) > 1) {
+                                                        if (count($data) > 0) {
                                                             foreach ($data as $value) {
                                                                 ?>
                                                                 <td><a href="ventanaResultadoAnalisis.php?id=<?php echo $value->getId() ?>"><?php echo $value->getId() ?></a></td>
