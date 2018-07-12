@@ -10,7 +10,6 @@ $usuario = $_SESSION["usuario"];
 $dao = new AnalisisMuestraDaoImp();
 $codigo = $_POST["txtCodigoMuestra"];
 $mensaje = null;
-
 if($_SESSION['tipo'] == 'usuario'){
     $codUsuario = $usuario->getCodigo();	
     $analisis = $dao->buscarPorClavePrimaria($codigo);
@@ -22,17 +21,20 @@ if($_SESSION['tipo'] == 'usuario'){
             $mensaje ='Analisis no pertece a este usuario';
         }
     }else{
-        $mensaje = 'Codigo no existe';
+        $_SESSION["busquedaMuestas"] =  null;        
     }
     
 }else{
-    
-    if($usuario->getCategoria()== 'R'){
-        
-    }
-    if ($usuario->getCategoria()== 'T') {
-        
-       
+    $codigo = $usuario->getRut();
+    $analisis = $dao->buscarPorClavePrimaria($codigo);
+    if($analisis != null){
+        if($usuario->getCategoria()== 'R'){
+         
+        }
+        if ($usuario->getCategoria()== 'T') {
+
+
+        }
     }
 }
 

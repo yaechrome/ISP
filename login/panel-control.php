@@ -44,7 +44,7 @@ $usuario = $_SESSION['usuario'];
                                         <?php if ($_SESSION['tipo'] == 'usuario') { ?>
                                         <p><a class="btn purple lighten-1" href="../paginas/ventanaMisDatos.php" >Mis Datos</a></p>
                                             <br>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Mis Análisis</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php?firstLoad=true" >Mis Análisis</a></p>
                                         <?php } else { ?>
                                             
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaMisDatos.php" >Mis Datos</a></p>

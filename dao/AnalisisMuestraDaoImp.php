@@ -186,9 +186,9 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
                 $empleado = new Empleado();
                 $empleadoDao = new EmpleadoDaoImp();
                 $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoRecibe"]);
-                if($empleado!=null){
-                    $analisisMuestra->setEmpleado($empleado);
-                }
+                
+                $analisisMuestra->setEmpleado($empleado);
+                
                 
                 $analisisMuestra->setId($value["idAnalisisMuestras"]);
                 $analisisMuestra->setFechaRecepcion($value["fechaRecepcion"]);               
