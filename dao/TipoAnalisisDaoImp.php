@@ -16,11 +16,8 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao {
             $stmt->execute();
             $registro = $stmt->fetchAll();
 
-            echo $registro;
             foreach ($registro as $value) {
 
-           echo json_encode($value);
-           echo json_encode($value["idTipoAnalisis"]);
                 $tipoAnalisis->setId($value["idTipoAnalisis"]);
                 
                 $tipoAnalisis->setNombre($value["nombre"]);

@@ -17,8 +17,6 @@ if ($est == 'En Proceso') {
 } else {
     $daoR = new ResultadoAnalisisDaoImp();
     $lista = $daoR->listarPorIdAnalisisMuestra($id);
-
-    echo json_encode($lista);
 }
 ?>
 
