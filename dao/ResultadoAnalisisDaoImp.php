@@ -1,6 +1,12 @@
 <?php
 include_once '../bd/ClasePDO.php';
+include_once '../dto/Empleado.php';
+include_once '../dto/AnalisisMuestras.php';
 include_once '../dto/ResultadoAnalisis.php';
+include_once '../dto/TipoAnalisis.php';
+include_once '../dao/TipoAnalisisDaoImp.php';
+include_once '../dao/AnalisisMuestraDaoImp.php';
+include_once '../dao/EmpleadoDaoImp.php';
 include_once 'BaseDao.php';
 include_once 'ResultadoAnalisisDao.php';
 
@@ -73,22 +79,23 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("select * from resultadoanalisis where idAnalisisMuestra=?");
+            $stmt = $pdo->prepare("select * from ResultadoAnalisis where idAnalisisMuestras=?");
             $stmt->bindValue(1, $id);
             $stmt->execute();
             $registro = $stmt->fetchAll();
+            $tipoAnalisis = new TipoAnalisis();
+            $tipoAnalisisDao = new TipoAnalisisDaoImp();
+            $analisisMuestra = new AnalisisMuestras();
+            $analisisMuestraDao = new AnalisisMuestraDaoImp();
+            $empleado = new Empleado();
+            $empleadoDao = new EmpleadoDaoImp();
             foreach ($registro as $value) {
-                $tipoAnalisis = new TipoAnalisis();
-                $tipoAnalisisDao = new TipoAnalisisDaoImp();
-                $tipoAnalisis = $tipoAnalisisDao->buscarPorClavePrimaria($value["idTipoAnalisis"]);
                 
-                $analisisMuestra = new AnalisisMuestras();
-                $analisisMuestraDao = new AnalisisMuestraDaoImp();
-                $analisisMuestra = $analisisMuestraDao->buscarPorClavePrimaria($value["idAnalisisMuestra"]);
-               
-                $empleado = new Empleado();
-                $empleadoDao = new EmpleadoDaoImp();
-                $empleado->$empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoAnalista"]);
+                $tipoAnalisis = $tipoAnalisisDao->buscarPorClavePrimaria($value["idTipoAnalisis"]);
+
+                $analisisMuestra = $analisisMuestraDao->buscarPorClavePrimaria($value["idAnalisisMuestras"]);
+
+                $empleado = $empleadoDao->buscarPorClavePrimaria($value["rutEmpleadoAnalista"]);
                 
                 $resultadoAnalisis = new ResultadoAnalisis();
                 $resultadoAnalisis->setTipoAnalisis($tipoAnalisis);
@@ -103,7 +110,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
 
             $pdo = NULL;
         } catch (Exception $exc) {
-            echo "Error dao al listar telefonos por código de Particular" . $exc->getMessage();
+            echo "Error dao al listar Resultado analisis por ID de Muestra" . $exc->getMessage();
         }
         return $lista;
         

@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 ?>
                 <div><?php echo $dto->getUsuario()->getCodigo(); ?></div>
                 <div><?php echo $dto->getId(); ?></div>
-                <a href="ventanaRegistroMuestras.php?id=<?php echo $dto->getId(); ?>">Procesar</a>
+                <a href="ventanaRegistroMuestras.php?id=<?= $dto->getId(); ?>&codigo=<?= $dto->getUsuario()->getCodigo(); ?>">Procesar</a>
             <?php } ?>
             </div>
 
