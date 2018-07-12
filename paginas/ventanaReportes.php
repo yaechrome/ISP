@@ -51,13 +51,12 @@ $cantidadDeUnResultadoTecnico = function ($resultado) {
     return $resultado->getCantidad();
 };
 $alturaDeLasBarrasTecnico = implode(', ', array_map($cantidadDeUnResultadoTecnico, $listaTecnicos));
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="../static/css/postulacion.css" type="text/css"/>
         <meta charset="UTF-8">
         <title>Reportes</title>
         <style>
@@ -205,28 +204,42 @@ $alturaDeLasBarrasTecnico = implode(', ', array_map($cantidadDeUnResultadoTecnic
         </script>
     </head>
     <body>
-        <h1>Reporte Receptores</h1>
-        <div class="container-formulario">
-            <canvas id="myChart" width="550" height="350" class="elemento-formulario"></canvas>
-            <div class="grilla">
-                <div class="header">Rut</div>
-                <div class="header">Nombre</div>
-                <div class="header">Cantidad</div>
-                <?= $htmlReporteReceptores ?>
-            </div>
-        </div>
-
-
-        <h1>Reporte Técnicos</h1>
-        <div class="container-formulario">
-            <canvas id="tecnicos" width="550" height="350" class="elemento-formulario"></canvas>
-            <div class="grilla">
-                <div class="header">Rut</div>
-                <div class="header">Nombre</div>
-                <div class="header">Cantidad</div>
-                <?= $htmlReporteTecnicos ?>
-            </div>
-        </div>
-        <a href=../login/volver.php>Volver</a> <br>
+        <main role="main">
+            <section class="container">
+                <div class="row mb0 center-align relative full">
+                    <div class="center">
+                        <div class="card">
+                            <div class="card-panel pad0">
+                                <div class="card-content pad24">
+                                    <div class="mb20"><h3 class="medium title">Reporte Receptores</h3></div>  
+                                    <div class="container-formulario">
+                                        <canvas id="myChart" width="450" height="325" class="elemento-formulario"></canvas>
+                                        <div class="grilla">
+                                            <div class="header">Rut</div>
+                                            <div class="header">Nombre</div>
+                                            <div class="header">Cantidad</div>
+                                            <?= $htmlReporteReceptores ?>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="mb20"><h3 class="medium title">Reporte Técnicos</h3></div> 
+                                    <div class="container-formulario">
+                                        <canvas id="tecnicos" width="450" height="325" class="elemento-formulario"></canvas>
+                                        <div class="grilla">
+                                            <div class="header">Rut</div>
+                                            <div class="header">Nombre</div>
+                                            <div class="header">Cantidad</div>
+                                            <?= $htmlReporteTecnicos ?>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h3 class="medium title"><a href=../login/volver.php>Volver</a></h3> <br>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </body>
 </html>
