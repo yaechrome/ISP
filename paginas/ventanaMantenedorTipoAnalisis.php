@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $_SESSION["listaDesplegar"] = $lista;
 } else {
     $lista = $_SESSION["listaDesplegar"];
-
 }
 ?>
 
@@ -55,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 ?>
                 <div><?php echo $dto->getId(); ?></div>
                 <div><?php echo $dto->getNombre(); ?></div>
-                <div><input type="button" value="Eliminar" name="btnEliminar" /></div>
+                <a href="eliminarTipoAnalisis.php?id=<?php echo $dto->getId(); ?>">Eliminar</a>
+
             <?php } ?>
         </div>
         <a href="ventanaCrearTipoAnalisis.php">Crear</a>

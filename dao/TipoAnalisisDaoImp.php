@@ -53,5 +53,21 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao{
         return $lista;
         
     }
+    
+    public function eliminar($id) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("delete from tipoanalisis where idTipoAnalisis = ?");
+
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0)
+                return TRUE;
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al eliminar Tipo de analisis" . $exc->getMessage();
+        }
+        return FALSE;
+    }
 
 }
