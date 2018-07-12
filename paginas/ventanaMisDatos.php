@@ -83,13 +83,17 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
                                                         <td><input type="text" name="txtDireccion" value="<?= $direccion ?>" disabled/></td>      
                                                     </tr>
                                                     <?php if ($usuario->getPerfil() == 'Particular') { ?>
-                                                    <td>Email:</td>
-                                                    <td><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></td>
-                                                    <a href="ventanaTelefonos.php">Telefonos</a>
-                                                <?php } else { ?>   
-                                                    <a href="ventanaContactos.php">Contactos</a>
+                                                        <tr>   
+                                                            <td>Email:</td>
+                                                            <td><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="ventanaTelefonos.php">Telefonos</a></td>
+                                                        <?php } else { ?>   
+                                                            <td><a href="ventanaContactos.php">Contactos</a></td>
+                                                        </tr>
+                                                    <?php } ?>
                                                 <?php } ?>
-                                            <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
