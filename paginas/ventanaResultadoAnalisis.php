@@ -14,10 +14,12 @@ $est = $analisis->getEstado();
 if ($est == 'En Proceso') {
     echo "<script> alert('Analisis sin resultado') </script>";
     include_once '../login/panel-control.php';
-} else {
-    $daoR = new ResultadoAnalisisDaoImp();
-    $lista = $daoR->listarPorIdAnalisisMuestra($id);
+    exit();
 }
+
+
+$daoR = new ResultadoAnalisisDaoImp();
+$lista = iterator_to_array($daoR->listarPorIdAnalisisMuestra($id));
 ?>
 
 <!DOCTYPE html>
