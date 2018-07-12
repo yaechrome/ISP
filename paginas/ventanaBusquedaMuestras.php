@@ -82,18 +82,11 @@ if (isset($_GET['firstLoad'])) {
                                                     <div><?php echo $value->getEstado() ?></div>
                                                     <?php
                                                 }
-                                            } elseif (count($data) == 1) {
-                                                if (isset($data)) {
-                                                    ?>
-                                                    <div><a href="ventanaResultadoAnalisis.php?id=<?php echo $data->getId() ?>"><?php echo $data->getId() ?></a></div>
-                                                    <div><?php echo $data->getEstado() ?></div>
-                                                    <?php
-                                                } else {
+                                            } else {
                                                     ?>
                                                     <div><?php echo 'Sin datos' ?></div>
                                                     <?php
                                                 }
-                                            }
                                             ?>
                                         </div>
                                         <br>
