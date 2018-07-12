@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <div><?php echo $dto->getId(); ?></div>
                 <div><?php echo $dto->getNombre(); ?></div>
                 <a href="eliminarTipoAnalisis.php?id=<?php echo $dto->getId(); ?>">Eliminar</a>
-
             <?php } ?>
         </div>
         <a href="ventanaCrearTipoAnalisis.php">Crear</a>
