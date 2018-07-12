@@ -52,6 +52,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link rel="stylesheet" href="../static/css/postulacion.css" type="text/css"/>
         <meta charset="UTF-8">
         <title>Resultado de muestras</title>
         <style>
@@ -143,14 +144,29 @@ and open the template in the editor.
         </script>
     </head>
     <body>
-        <form action="resultadoAnalisis.php" method="POST" class="container-formulario">
-            <canvas id="myChart" width="600" height="500" class="elemento-formulario"></canvas>
-            <div class="grid-wrapper elemento-formulario">
-                <div class="header">Tipo de análisis</div>
-                <div class="header">Resultado en PPM</div>
-                <?= $htmlDeTodosLosResultados ?>
-            </div>
-        </form>
-        <a href=../login/volver.php>Volver</a> <br>
+        <main role="main">
+            <section class="container">
+                <div class="row mb0 center-align relative full">
+                    <div class="center">
+                        <div class="card">
+                            <div class="card-panel pad0">
+                                <div class="card-content pad24">
+                                    <form action="resultadoAnalisis.php" method="POST" class="container-formulario">
+                                        <canvas id="myChart" width="600" height="500" class="elemento-formulario"></canvas>
+                                        <div class="grid-wrapper elemento-formulario">
+                                            <div class="header">Tipo de análisis</div>
+                                            <div class="header">Resultado en PPM</div>
+                                            <?= $htmlDeTodosLosResultados ?>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <h3 class="medium title"><a href=../login/volver.php>Volver</a></h3> <br>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </body>
 </html>
