@@ -78,7 +78,7 @@ if (isset($_GET['firstLoad'])) {
                 } else {
                     if (isset($data)) {
                         ?>
-                        <div><a href="ventanaResultadoAnalisis.php?id=<?php echo $value->getId() ?>"><?php echo $value->getId() ?></a></div>
+                        <div><a href="ventanaResultadoAnalisis.php?id=<?php echo $data->getId() ?>"><?php echo $data->getId() ?></a></div>
                         <div><?php echo $data->getEstado() ?></div>
                         <?php
                     } else {
