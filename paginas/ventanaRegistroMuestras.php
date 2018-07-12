@@ -35,6 +35,7 @@ $_SESSION["listaDesplegar"] = $lista;
             }
             .elemento-formulario {
                 min-width: 300px;
+                align-content: center;
             }
 
         </style>
@@ -69,9 +70,7 @@ $_SESSION["listaDesplegar"] = $lista;
 
                                         </div>
                                         <input type="hidden" name="txtId" value="<?= $id ?>" />
-                                        <div class="text_right">
                                         <input type="submit" value="Guardar Análisis" name="btnGuardar" class="elemento-formulario"/>
-                                        <div>
                                     </form>
                                     <a href=../login/volver.php>Volver</a> <br>
                                 </div>
