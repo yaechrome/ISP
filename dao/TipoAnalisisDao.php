@@ -8,4 +8,7 @@ interface TipoAnalisisDao {
     
     public function buscarPorClavePrimaria($id);
     
+    public function existeRegistro($nombre);
+    
+    public function crear($nombre);
 }

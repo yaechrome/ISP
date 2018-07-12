@@ -28,7 +28,7 @@
         <form action="agregarTipoAnalisis.php" method="POST" class="container-busquedas">
             <div class="grilla">
                 <div>Nombre</div>
-                <div><input type="text" name="txtNombre" value="" /></div>
+                <div><input type="text" name="txtNombre" value="" required/></div>
                 <input type="submit" value="Guardar" name="btnGuardar" />
             </div>  
         </form>

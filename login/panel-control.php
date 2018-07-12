@@ -60,7 +60,7 @@ $usuario = $_SESSION['usuario'];
                                             <br>
                                             <?php } 
                                             if ($usuario->getCategoria() == 'A') { ?>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaMantenedorTipoAnalisis.php" >Mantenedor Tipo de análisis</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaMantenedorTipoAnalisis.php" >Tipo de análisis</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaRegistrarEmpleado.php" >Registrar empleado</a></p>
                                             <br>

@@ -70,4 +70,38 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao{
         return FALSE;
     }
 
+    public function existeRegistro($nombre) {
+        try {
+            $pdo = new clasePDO();
+            $stmt= $pdo->prepare("SELECT * FROM tipoanalisis WHERE nombre=?");
+            $stmt->bindParam(1, $nombre);
+            $stmt->execute();
+            
+            if(count($stmt->fetchAll())>0){
+                return TRUE;
+            }
+            $pdo=NULL;            
+        } catch (Exception $exc) {
+            echo "Error dao al validar tipo de analisis ".$exc->getMessage();
+        }
+        return FALSE;
+    }
+
+    public function crear($nombre) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("INSERT INTO tipoanalisis (nombre) VALUES(?)");
+
+            $stmt->bindValue(1, $nombre);
+
+            $stmt->execute();
+            if ($stmt->rowCount() > 0)
+                return TRUE;
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al agregar tipo de analisis " . $exc->getMessage();
+        }
+        return FALSE;
+    }
+
 }
