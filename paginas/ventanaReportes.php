@@ -88,7 +88,7 @@ $alturaDeLasBarrasTecnico = implode(', ', array_map($cantidadDeUnResultadoTecnic
                     data: {
                         labels: [<?= $nombresDeLasEtiquetas ?>],
                         datasets: [{
-                                label: 'PPM del análisis',
+                                label: 'Cantidad de muestras recibidas',
                                 data: [<?= $alturaDeLasBarras ?>],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
@@ -147,7 +147,7 @@ $alturaDeLasBarrasTecnico = implode(', ', array_map($cantidadDeUnResultadoTecnic
                     data: {
                         labels: [<?= $nombresDeLasEtiquetasTecnico ?>],
                         datasets: [{
-                                label: 'PPM del análisis',
+                                label: 'Cantidad de muestras procesadas',
                                 data: [<?= $alturaDeLasBarrasTecnico ?>],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
