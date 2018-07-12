@@ -69,7 +69,9 @@ $_SESSION["listaDesplegar"] = $lista;
 
                                         </div>
                                         <input type="hidden" name="txtId" value="<?= $id ?>" />
-                                        <input type="submit" value="Guardar Análisis" name="btnGuardar" class="elemento-formulario text_right"/>
+                                        <div class="text_right">
+                                        <input type="submit" value="Guardar Análisis" name="btnGuardar" class="elemento-formulario"/>
+                                        <div>
                                     </form>
                                     <a href=../login/volver.php>Volver</a> <br>
                                 </div>
