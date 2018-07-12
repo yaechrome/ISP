@@ -71,14 +71,14 @@ if (isset($_GET['firstLoad'])) {
                 if (count($data) > 1) {
                     foreach ($data as $value) {
                         ?>
-                        <div><?php echo $value->getId() ?></div>
+                        <div><a href="ventanaResultadoAnalisis.php?id=<?php echo $value->getId() ?>"><?php echo $value->getId() ?></a></div>
                         <div><?php echo $value->getEstado() ?></div>
                         <?php
                     }
                 } else {
                     if (isset($data)) {
                         ?>
-                        <div><?php echo $data->getId() ?></div>
+                        <div><a href="ventanaResultadoAnalisis.php?id=<?php echo $value->getId() ?>"><?php echo $value->getId() ?></a></div>
                         <div><?php echo $data->getEstado() ?></div>
                         <?php
                     } else {

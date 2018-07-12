@@ -50,13 +50,13 @@ $usuario = $_SESSION['usuario'];
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaMisDatos.php" >Mis Datos</a></p>
                                             <br>
                                             <?php if($usuario->getCategoria() == 'R') {?>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Muestras Recibidas</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php?firstLoad=true" >Muestras Recibidas</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaBuscarCliente.php" >Ingresar Muestras</a></p>
                                             <br>
                                             <?php }
                                             if ($usuario->getCategoria() == 'T') { ?>
-                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php" >Muestras revisadas</a></p>
+                                            <p><a class="btn purple lighten-1" href="../paginas/ventanaBusquedaMuestras.php?firstLoad=true" >Muestras revisadas</a></p>
                                             <br>
                                             <p><a class="btn purple lighten-1" href="../paginas/ventanaListadoMuestras.php" >Muestras en Proceso</a></p>
                                             <br>

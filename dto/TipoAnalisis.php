@@ -8,6 +8,8 @@ class TipoAnalisis {
     function __construct() {
         
     }
+
+    
     function getId() {
         return $this->id;
     }
@@ -16,13 +18,15 @@ class TipoAnalisis {
         return $this->nombre;
     }
 
-    function setId($id) {
-        $this->id = $id;
+    function setId($_id) {
+        $this->id = $_id;
     }
 
-    function setNombre($nombre) {
-        $this->nombre = $nombre;
+    function setNombre($_nombre) {
+        $this->nombre = $_nombre;
     }
+
+
 
 
 }

@@ -1,25 +1,29 @@
 <?php
+
 include_once '../bd/ClasePDO.php';
 include_once '../dto/TipoAnalisis.php';
-include_once 'BaseDao.php';
 include_once 'TipoAnalisisDao.php';
 
-class TipoAnalisisDaoImp implements TipoAnalisisDao{
-    
+class TipoAnalisisDaoImp implements TipoAnalisisDao {
+
     public function buscarPorClavePrimaria($id) {
-        $tipoAnalisis = NULL;
+        $tipoAnalisis = new TipoAnalisis();
         try {
-            $tipoAnalisis = new TipoAnalisis();
+
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("select * from tipoanalisis where idTipoAnalisis=?");
             $stmt->bindValue(1, $id);
             $stmt->execute();
             $registro = $stmt->fetchAll();
-            foreach ($registro as $value) {
-                
-                $tipoAnalisis->setId($value["idTipoAnalisis"]);
-                $tipoAnalisis->setNombre($value["nombre"]);
 
+            echo $registro;
+            foreach ($registro as $value) {
+
+           echo json_encode($value);
+           echo json_encode($value["idTipoAnalisis"]);
+                $tipoAnalisis->setId($value["idTipoAnalisis"]);
+                
+                $tipoAnalisis->setNombre($value["nombre"]);
             }
 
             $pdo = NULL;
@@ -33,10 +37,10 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao{
         try {
             $lista = new ArrayObject();
             $pdo = new clasePDO();
-            $stmt= $pdo->prepare("select * from tipoanalisis");
+            $stmt = $pdo->prepare("select * from tipoanalisis");
             $stmt->execute();
-            
-            $tipos= $stmt->fetchAll();
+
+            $tipos = $stmt->fetchAll();
             foreach ($tipos as $value) {
                 $tipoAnalisis = new TipoAnalisis();
                 $tipoAnalisis->setId($value["idTipoAnalisis"]);
@@ -44,16 +48,14 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao{
 
                 $lista->append($tipoAnalisis);
             }
-            
-            $pdo=NULL;     
-            
+
+            $pdo = NULL;
         } catch (Exception $exc) {
-            echo "Error dao al listar tipos de analisis ".$exc->getMessage();
+            echo "Error dao al listar tipos de analisis " . $exc->getMessage();
         }
         return $lista;
-        
     }
-    
+
     public function eliminar($id) {
         try {
             $pdo = new clasePDO();
@@ -73,16 +75,16 @@ class TipoAnalisisDaoImp implements TipoAnalisisDao{
     public function existeRegistro($nombre) {
         try {
             $pdo = new clasePDO();
-            $stmt= $pdo->prepare("SELECT * FROM tipoanalisis WHERE nombre=?");
+            $stmt = $pdo->prepare("SELECT * FROM tipoanalisis WHERE nombre=?");
             $stmt->bindParam(1, $nombre);
             $stmt->execute();
-            
-            if(count($stmt->fetchAll())>0){
+
+            if (count($stmt->fetchAll()) > 0) {
                 return TRUE;
             }
-            $pdo=NULL;            
+            $pdo = NULL;
         } catch (Exception $exc) {
-            echo "Error dao al validar tipo de analisis ".$exc->getMessage();
+            echo "Error dao al validar tipo de analisis " . $exc->getMessage();
         }
         return FALSE;
     }

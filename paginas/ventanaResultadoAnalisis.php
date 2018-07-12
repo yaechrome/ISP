@@ -1,3 +1,27 @@
+
+<?php
+include_once '../login/sessionStart.php';
+include_once '../dao/ResultadoAnalisisDaoImp.php';
+include_once '../dto/ResultadoAnalisis.php';
+include_once '../dao/AnalisisMuestraDaoImp.php';
+include_once '../dto/AnalisisMuestras.php';
+
+$id = $_GET["id"];
+
+$daoA = new AnalisisMuestraDaoImp();
+$analisis = $daoA->buscarPorClavePrimaria($id);
+$est = $analisis->getEstado();
+if ($est == 'En Proceso') {
+    echo "<script> alert('Analisis sin resultado') </script>";
+    include_once '../login/panel-control.php';
+} else {
+    $daoR = new ResultadoAnalisisDaoImp();
+    $lista = $daoR->listarPorIdAnalisisMuestra($id);
+
+    echo json_encode($lista);
+}
+?>
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -19,7 +43,7 @@ and open the template in the editor.
                 grid-template-columns: 100%;
                 justify-items: center;
             }
-            
+
             .elemento-formulario {
                 min-width: 300px;
             }
@@ -99,14 +123,14 @@ and open the template in the editor.
             <div class="grid-wrapper elemento-formulario">
                 <div>Tipo de análisis</div>
                 <div>Resultado en PPM</div>
-                <?php
-                for ($x = 0; $x <= 10; $x++) {
-                    ?>
+<?php
+for ($x = 0; $x <= 10; $x++) {
+    ?>
                     <div>Micotoxina</div>
                     <div>20</div>
-                    <?php
-                }
-                ?>
+    <?php
+}
+?>
             </div>
         </form>
         <a href=../login/volver.php>Volver</a> <br>
