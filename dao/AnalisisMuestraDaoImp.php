@@ -117,8 +117,6 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             $stmt->bindValue(2, $dto->getId());
             $stmt->execute();
             
-            var_dump($stmt->rowCount());
-            var_dump($stmt->errorInfo());
             if ($stmt->rowCount() > 0){
                 return TRUE;
             }
