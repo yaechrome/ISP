@@ -12,13 +12,15 @@ $usuario = $_SESSION["usuario"];
 $dao = new AnalisisMuestraDaoImp();
 $codigo = $_POST["txtCodigoMuestra"];
 $mensaje = null;
+$lista = new ArrayObject();
 if ($_SESSION['tipo'] == 'usuario') {
     $codUsuario = $usuario->getCodigo();
     $analisis = $dao->buscarPorClavePrimaria($codigo);
     if ($analisis != null) {
         $cod = $analisis->getUsuario()->getCodigo();
         if ($codUsuario == $cod) {
-            $_SESSION["busquedaMuestas"] = $analisis;
+            $lista->append($analisis);
+            $_SESSION["busquedaMuestas"] = $lista;
         } else {
             $mensaje = 'Analisis no pertece a este usuario';
         }
@@ -34,7 +36,8 @@ if ($_SESSION['tipo'] == 'usuario') {
 
             $cod = $analisis->getEmpleado()->getRut();
             if ($codUsuario == $cod) {
-                $_SESSION["busquedaMuestas"] = $analisis;
+                $lista->append($analisis);
+                $_SESSION["busquedaMuestas"] = $lista;
             } else {
                 $mensaje = 'Analisis no pertece a este usuario';
             }
@@ -48,7 +51,8 @@ if ($_SESSION['tipo'] == 'usuario') {
         if ($analisis != null) {
             $cod = $analisis->getTecnico();
             if ($codUsuario == $cod) {
-                $_SESSION["busquedaMuestas"] = $analisis;
+                $lista->append($analisis);
+                $_SESSION["busquedaMuestas"] = $lista;
             } else {
                 $mensaje = 'Analisis no pertece a este usuario';
             }
