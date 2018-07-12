@@ -53,37 +53,46 @@ if (isset($_GET['firstLoad'])) {
                                             </div>
                                             <br>
                                             <br>
-                                            <div>Código Muestra</div>
+
                                             <table class="responsive-table striped" border="0">
-                                                <tbody>
+
+                                                <thead> 
                                                     <tr>
+                                                        <td>Código Muestra</td>
                                                         <td>Estado</td>
                                                     </tr>
-                                                    <tr>
-                                                        <?php
-                                                        $data = $_SESSION["busquedaMuestas"];
+                                                </thead>
+                                                <tbody>
 
-                                                        if (count($data) > 0) {
-                                                            foreach ($data as $value) {
-                                                                ?>
+                                                    <?php
+                                                    $data = $_SESSION["busquedaMuestas"];
+
+                                                    if (count($data) > 0) {
+                                                        foreach ($data as $value) {
+                                                            ?>
+                                                            <tr>
                                                                 <td><a href="ventanaResultadoAnalisis.php?id=<?php echo $value->getId() ?>"><?php echo $value->getId() ?></a></td>
                                                                 <td><?php echo $value->getEstado() ?></td>
-                                                                <?php
-                                                            }
-                                                        } elseif (count($data) == 1) {
-                                                            if (isset($data)) {
-                                                                ?>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    } elseif (count($data) == 1) {
+                                                        if (isset($data)) {
+                                                            ?>
+                                                            <tr>
                                                                 <td><a href="ventanaResultadoAnalisis.php?id=<?php echo $data->getId() ?>"><?php echo $data->getId() ?></a></td>
                                                                 <td><?php echo $data->getEstado() ?></td>
-                                                                <?php
-                                                            } else {
-                                                                ?>
-                                                                <td><?php echo 'Sin datos' ?></td>
-                                                                <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </tr>
+                                                            </tr>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+
+                                                        <td><?php echo 'Sin datos' ?></td>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+
                                                 </tbody>
                                             </table>
                                             <br>
