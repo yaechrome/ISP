@@ -183,6 +183,7 @@ CREATE TABLE `ResultadoAnalisis` (
 
 insert into `resultadoanalisis` (`idTipoAnalisis`,`idAnalisisMuestras`,`fechaRegistro`,`PPM`,`rutEmpleadoAnalista`) values (1,1,'2018-01-02',18,'4-5');
 insert into `resultadoanalisis` (`idTipoAnalisis`,`idAnalisisMuestras`,`fechaRegistro`,`PPM`,`rutEmpleadoAnalista`) values (2,1,'2018-01-02',17,'4-5');
+insert into `resultadoanalisis` (`idTipoAnalisis`,`idAnalisisMuestras`,`fechaRegistro`,`PPM`,`rutEmpleadoAnalista`) values (3,2,'2018-03-03',15,'4-5');
 
 
 # Volcado de tabla Telefono
