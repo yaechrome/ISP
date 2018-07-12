@@ -89,7 +89,6 @@ $htmlDeTodasLasPersonas = implode('', $htmlsDeTodasLasPersonas);
             <section class="container">
                 <div class="row mb0 center-align relative full">
                     <div class="center">
-                        <div class="col s12 m6 offset-m3 l4 offset-l4">
                             <div class="card">
                                 <div class="card-panel pad0">
                                     <div class="card-content pad24">
@@ -117,7 +116,7 @@ $htmlDeTodasLasPersonas = implode('', $htmlsDeTodasLasPersonas);
                                             </form>
                                         </div>
                                         <br>
-                                        <div class="grilla">
+                                        <div class="grilla text_left">
                                             <div class="header">Rut</div>
                                             <div class="header">Nombre</div>
                                             <div class="header">Perfil</div>
@@ -130,7 +129,6 @@ $htmlDeTodasLasPersonas = implode('', $htmlsDeTodasLasPersonas);
                                     </div>
                                 </div>
                             </div>   
-                        </div>
                     </div>
                 </div>
             </section>
