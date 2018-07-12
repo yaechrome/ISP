@@ -20,6 +20,28 @@ if ($est == 'En Proceso') {
 
 $daoR = new ResultadoAnalisisDaoImp();
 $lista = iterator_to_array($daoR->listarPorIdAnalisisMuestra($id));
+
+$htmlDeUnResultado = function ($resultado) {
+    $nombre = $resultado->getTipoAnalisis()->getNombre();
+    $ppm = $resultado->getPpm();
+    return <<<HTML
+        <div>$nombre</div>
+        <div>$ppm</div>
+HTML;
+};
+$htmlDeTodosLosResultados = implode(array_map($htmlDeUnResultado, $lista));
+
+
+$nombreDeUnResultado = function ($resultado) {
+    return '"' . $resultado->getTipoAnalisis()->getNombre() . '"';
+};
+$nombresDeLasEtiquetas = implode(', ', array_map($nombreDeUnResultado, $lista));
+
+
+$ppmDeUnResultado = function ($resultado) {
+    return $resultado->getPpm();
+};
+$alturaDeLasBarras = implode(', ', array_map($ppmDeUnResultado, $lista));
 ?>
 
 <!DOCTYPE html>
@@ -58,10 +80,10 @@ and open the template in the editor.
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["2015-01", "2015-02", "2015-03", "2015-04", "2015-05", "2015-06", "2015-07", "2015-08", "2015-09", "2015-10", "2015-11", "2015-12"],
+                        labels: [<?= $nombresDeLasEtiquetas ?>],
                         datasets: [{
-                                label: '# of Tomatoes',
-                                data: [12, 19, 3, 5, 2, 3, 20, 3, 5, 6, 2, 1],
+                                label: 'PPM del análisis',
+                                data: [<?= $alturaDeLasBarras ?>],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -123,14 +145,7 @@ and open the template in the editor.
             <div class="grid-wrapper elemento-formulario">
                 <div>Tipo de análisis</div>
                 <div>Resultado en PPM</div>
-<?php
-for ($x = 0; $x <= 10; $x++) {
-    ?>
-                    <div>Micotoxina</div>
-                    <div>20</div>
-    <?php
-}
-?>
+                <?= $htmlDeTodosLosResultados ?>
             </div>
         </form>
         <a href=../login/volver.php>Volver</a> <br>
