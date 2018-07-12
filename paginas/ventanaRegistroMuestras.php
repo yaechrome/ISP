@@ -5,12 +5,10 @@ include_once '../login/sessionStart.php';
 
 $id = $_GET['id'];
 $codigo = $_GET['codigo'];
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $dao = new ResultadoAnalisisDaoImp();
-    $lista = $dao->listarPorIdAnalisisMuestra($id);
-    $_SESSION["listaDesplegar"] = $lista;
-} 
 
+$dao = new ResultadoAnalisisDaoImp();
+$lista = $dao->listarPorIdAnalisisMuestra($id);
+$_SESSION["listaDesplegar"] = $lista;
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 foreach ($lista as $dto) {
                     ?>
                     <div><?php echo $dto->getTipoAnalisis()->getNombre(); ?></div>
-                    <div><input type="number" name="<?=$dto->getTipoAnalisis()->getId()?>" value="" /></div>
+                    <div><input type="number" name="<?= $dto->getTipoAnalisis()->getId() ?>" value="" /></div>
                 <?php } ?>
 
             </div>

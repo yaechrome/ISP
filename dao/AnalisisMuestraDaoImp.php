@@ -110,14 +110,18 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
             
             $pdo = new clasePDO();
             $stmt = null;
-            $stmt = $pdo->prepare("update analisismuestras estado=? where idAnalisisMuestras=?");
+            $stmt = $pdo->prepare("update analisismuestras set estado=? where idAnalisisMuestras=?");
               
             
             $stmt->bindValue(1, $dto->getEstado());
             $stmt->bindValue(2, $dto->getId());
             $stmt->execute();
-            if ($stmt->rowCount() > 0)
+            
+            var_dump($stmt->rowCount());
+            var_dump($stmt->errorInfo());
+            if ($stmt->rowCount() > 0){
                 return TRUE;
+            }
             $pdo = NULL;
         } catch (Exception $exc) {
             echo "Error dao al modificar estado de analisis " . $exc->getMessage();

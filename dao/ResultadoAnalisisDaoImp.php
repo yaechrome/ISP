@@ -1,6 +1,7 @@
 <?php
 include_once '../bd/ClasePDO.php';
 include_once '../dto/Empleado.php';
+include_once '../dto/AnalisisXTecnico.php';
 include_once '../dto/AnalisisMuestras.php';
 include_once '../dto/ResultadoAnalisis.php';
 include_once '../dto/TipoAnalisis.php';
@@ -9,8 +10,6 @@ include_once '../dao/AnalisisMuestraDaoImp.php';
 include_once '../dao/EmpleadoDaoImp.php';
 include_once 'BaseDao.php';
 include_once 'ResultadoAnalisisDao.php';
-include_once '../dto/AnalisisMuestras.php';
-include_once '../dto/AnalisisXTecnico.php';
 
 class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     
@@ -144,12 +143,13 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
     public function modificar($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("update resultadoanalisis set fechaRegistro=now(), rutEmpleadoAnalista=?  where idAnalisisMuestra=? and idTipoAnalisis =?");
+            $stmt = $pdo->prepare("update resultadoanalisis set fechaRegistro=now(), rutEmpleadoAnalista=?, ppm=?  where idAnalisisMuestras=? and idTipoAnalisis =?");
 
             
             $stmt->bindValue(1, $dto->getEmpleado()->getRut());
-            $stmt->bindValue(2, $dto->getAnalisisMuestra()->getId());
-            $stmt->bindValue(2, $dto->getTipoAnalisis()->getId());
+            $stmt->bindValue(2, $dto->getPpm());
+            $stmt->bindValue(3, $dto->getAnalisisMuestra()->getId());
+            $stmt->bindValue(4, $dto->getTipoAnalisis()->getId());
             
 
             $stmt->execute();

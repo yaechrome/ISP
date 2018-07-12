@@ -2,14 +2,12 @@
 include_once '../dao/AnalisisMuestraDaoImp.php';
 include_once '../login/sessionStart.php';
 
-$cantidad = 0;
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
     $dao = new AnalisisMuestraDaoImp();
     $lista = $dao->buscarEnProceso();
     $_SESSION["listaDesplegar"] = $lista;
-} else {
-    $lista = $_SESSION["listaDesplegar"];
-}
+
+
 ?>
 
 <!DOCTYPE html>
