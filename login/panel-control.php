@@ -21,6 +21,7 @@ $usuario = $_SESSION['usuario'];
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="../static/css/codebeautify.css" type="text/css"/>
     <div class="text_right">
         <a class="btn red darken-1" href=../login/logout.php>Cerrar Sesion </a>

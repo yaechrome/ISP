@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../static/css/codebeautify.css" type="text/css"/>
+        <link rel="stylesheet" href="../static/css/postulacion.css" type="text/css"/>
     <div class="text_right">
         <a class="btn red darken-1" href=../login/logout.php>Cerrar Sesion </a>
     </div>
