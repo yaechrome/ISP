@@ -53,64 +53,62 @@ if (isset($_POST['accion']) && $_POST['accion'] == 'Dar de baja') {
                                 <div class="card-panel pad0">
                                     <div class="card-content pad24">
                                         <div class="mb20"><h3 class="medium title">MIS DATOS</h3></div>  
-                                        <form action="agregarContacto.php" method="POST">
-                                            <table class="responsive-table striped" border="0">
-                                                <tbody>
-                                                    <?php if ($_SESSION['tipo'] == 'usuario') { ?>
-                                                        <tr>
-                                                            <td>Código:</td>
-                                                            <td><input type="text" name="txtCodigo" value="<?= $codigo ?>" disabled/></td>
-                                                        </tr>
-                                                    <?php } ?>
+                                        <table class="responsive-table striped" border="0">
+                                            <tbody>
+                                                <?php if ($_SESSION['tipo'] == 'usuario') { ?>
                                                     <tr>
-                                                        <td>Rut:</td>
-                                                        <td><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></td>
+                                                        <td>Código:</td>
+                                                        <td><input type="text" name="txtCodigo" value="<?= $codigo ?>" disabled/></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Nombre:</td>
-                                                        <td><input type="text" name="txtNombre" value="<?= $nombre ?>" disabled/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perfil:</td>
-                                                        <td><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Estado:</td>
-                                                        <td><input type="text" name="txtEstado" value="<?= $estado ?>" disabled/></td>
-                                                    </tr> 
-                                                    <?php if ($_SESSION['tipo'] == 'usuario') { ?>
-                                                        <tr>
-                                                            <td>Direccion:</td>
-                                                            <td><input type="text" name="txtDireccion" value="<?= $direccion ?>" disabled/></td>      
-                                                        </tr>
-                                                        <?php if ($usuario->getPerfil() == 'Particular') { ?>
-                                                        <td>Email:</td>
-                                                        <td><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></td>
-                                                        <a href="ventanaTelefonos.php">Telefonos</a>
-                                                    <?php } else { ?>   
-                                                        <a href="ventanaContactos.php">Contactos</a>
-                                                    <?php } ?>
                                                 <?php } ?>
-                                                </tbody>
-                                            </table>
-                                            <br>
-                                            <input type="submit" value="Guardar" name="btnGuardar" />
+                                                <tr>
+                                                    <td>Rut:</td>
+                                                    <td><input type="text" name="txtRut" value="<?= $rut ?>" disabled/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nombre:</td>
+                                                    <td><input type="text" name="txtNombre" value="<?= $nombre ?>" disabled/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Perfil:</td>
+                                                    <td><input type="text" name="txtPerfil" value="<?= $perfil ?>" disabled/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Estado:</td>
+                                                    <td><input type="text" name="txtEstado" value="<?= $estado ?>" disabled/></td>
+                                                </tr> 
+                                                <?php if ($_SESSION['tipo'] == 'usuario') { ?>
+                                                    <tr>
+                                                        <td>Direccion:</td>
+                                                        <td><input type="text" name="txtDireccion" value="<?= $direccion ?>" disabled/></td>      
+                                                    </tr>
+                                                    <?php if ($usuario->getPerfil() == 'Particular') { ?>
+                                                    <td>Email:</td>
+                                                    <td><input type="text" name="txtEmail" value="<?= $email ?>" disabled/></td>
+                                                    <a href="ventanaTelefonos.php">Telefonos</a>
+                                                <?php } else { ?>   
+                                                    <a href="ventanaContactos.php">Contactos</a>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            </tbody>
+                                        </table>
+                                        <br>
+                                    </div>
+                                    <br>
+                                    <?php if ($_SESSION['tipo'] == 'usuario') { ?>
+                                        <form method="POST">
+                                            <input type="submit" name="accion" value="Dar de baja">
                                         </form>
                                         <br>
-                                        <?php if ($_SESSION['tipo'] == 'usuario') { ?>
-                                            <form method="POST">
-                                                <input type="submit" name="accion" value="Dar de baja">
-                                            </form>
-                                            <br>
-                                        <?php } ?>
-                                        <a href="ventanaEditarMisDatos.php">Editar</a>
-                                        <a href=../login/volver.php>Volver</a> <br>
+                                    <?php } ?>
+                                    <a href="ventanaEditarMisDatos.php">Editar</a>
+                                    <a href=../login/volver.php>Volver</a> <br>
 
-                                    </div>
                                 </div>
-                            </div>   
-                        </div>
+                            </div>
+                        </div>   
                     </div>
+                </div>
                 </div>
             </section>
         </main>
