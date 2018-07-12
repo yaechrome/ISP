@@ -152,8 +152,24 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         return $lista;
     }
 
-    public function buscarPorTecnico($rut) {
-        
+    public function buscarAnalisisPorTecnico($rut) {
+        try {
+            $lista = new ArrayObject();
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("select Distinct idAnalisisMuestras from resultadoanalisis where rutEmpleadoAnalista = ?");
+            $stmt->bindValue(1, $rut);
+            $stmt->execute();
+            $registro = $stmt->fetchAll();
+            foreach ($registro as $value) {
+
+                $lista->append($value["idAnalisisMuestras"]);
+            }
+
+            $pdo = NULL;
+        } catch (Exception $exc) {
+            echo "Error dao al listar telefonos por código de Particular" . $exc->getMessage();
+        }
+        return $lista;
     }
 
 }
