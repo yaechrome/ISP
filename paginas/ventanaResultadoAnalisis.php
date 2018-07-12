@@ -72,6 +72,9 @@ and open the template in the editor.
             #myChart {
 
             }
+            .header {
+                border-bottom: 1px solid #000;
+            }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.js"></script>
         <script>
@@ -143,8 +146,8 @@ and open the template in the editor.
         <form action="resultadoAnalisis.php" method="POST" class="container-formulario">
             <canvas id="myChart" width="600" height="500" class="elemento-formulario"></canvas>
             <div class="grid-wrapper elemento-formulario">
-                <div>Tipo de análisis</div>
-                <div>Resultado en PPM</div>
+                <div class="header">Tipo de análisis</div>
+                <div class="header">Resultado en PPM</div>
                 <?= $htmlDeTodosLosResultados ?>
             </div>
         </form>
