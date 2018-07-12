@@ -250,7 +250,7 @@ class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
         $lista = new ArrayObject();
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("select rutEmpleadoRecibe, nombreEmpleado, count(idAnalisisMuestras) as cantidad from analisismuestras join empleado on (empleado.rutEmpleado = analisisMuestras.rutEmpleadoRecibe)");
+            $stmt = $pdo->prepare("select rutEmpleadoRecibe, nombreEmpleado, count(idAnalisisMuestras) as cantidad from analisismuestras join empleado on (empleado.rutEmpleado = analisisMuestras.rutEmpleadoRecibe) GROUP BY rutEmpleadoRecibe");
 
             
             $stmt->execute();

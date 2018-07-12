@@ -166,7 +166,7 @@ class ResultadoAnalisisDaoImp implements ResultadoAnalisisDao{
         $lista = new ArrayObject();
         try {
             $pdo= new clasePDO();
-            $stmt = $pdo->prepare("select rutEmpleadoAnalista, nombreEmpleado, count(rutEmpleadoAnalista) as cantidad from resultadoanalisis join empleado on (empleado.rutEmpleado = resultadoanalisis.rutEmpleadoAnalista)");
+            $stmt = $pdo->prepare("select rutEmpleadoAnalista, nombreEmpleado, count(rutEmpleadoAnalista) as cantidad from resultadoanalisis join empleado on (empleado.rutEmpleado = resultadoanalisis.rutEmpleadoAnalista) GROUP BY rutEmpleadoAnalista");
             
             $stmt->execute();
             $resultado = $stmt->fetchAll();
