@@ -7,6 +7,7 @@ include_once '../dao/UsuarioDaoImp.php';
 include_once '../dao/EmpleadoDaoImp.php';
 include_once '../dto/Usuario.php';
 include_once '../dto/Empleado.php';
+include_once '../dto/Reporte.php';
 
 class AnalisisMuestraDaoImp implements AnalisisMuestraDao{
 
